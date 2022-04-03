@@ -19,9 +19,16 @@
     </div>
 
     <div>
-        <div>
-            <a href="{% url 'create-post' %}">add Post</a>
-        </div>
+        
+        {% if images_count > 0 %}
+        <h5>{{images_count}} posts found</h5>
+        {% elif images_count == -1 %}
+        {% else %}
+        <h5>{{images_count}} posts found</h5>
+        {% endif %}
+            
+        <a href="{% url 'create-post' %}">add Post</a>
+
         {% for image in images %}
         <div>
             <a href="{% url 'update-post' image.id %}">edit Post</a>

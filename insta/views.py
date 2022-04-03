@@ -14,9 +14,12 @@ def home(request):
     )
     tags = Tag.objects.all()
 
-    if request.
+    if request.GET.get('q') != None:
+        images_count = images.count()
+    else:
+        images_count = -1
 
-    context = {'images': images, 'tags': tags,}
+    context = {'images': images, 'tags': tags, 'images_count': images_count, }
     return render(request, 'insta/home.html', context)
 
 def post(request, pk):
