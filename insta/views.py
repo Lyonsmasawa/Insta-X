@@ -1,24 +1,18 @@
 from multiprocessing import context
 from unicodedata import name
 from django.shortcuts import render
+from .models import Image, Comment
 
 # Create your views here.
-
-posts = [
-    {'id': 1, 'name': 'Design with me'},
-    {'id': 1, 'name': 'Design with me'},
-    {'id': 1, 'name': 'Design with me'},
-]
-
 def home(request):
-    context = {'posts': posts}
+    images = Image.objects.all()
+
+    context = {'images': images}
     return render(request, 'insta/home.html', context)
 
 def post(request, pk):
-    post = None
-    for i in posts:
-        if i['id'] == int(pk):
-            post = i
-
-    context = {'post':post}
+    image = Image.objects.get(id=pk)
+    comments = image.comment_set.all()
+    
+    context = {'image': image, 'comments':comments}
     return render(request, 'insta/posts.html', context)

@@ -2,5 +2,12 @@
 
 
 {% block content %}
-<h5>{{post.name}}</h5>
+<img src="{{image.image.url}}" alt="" width="10%">
+<h5>{{image.name}}</h5>
+
+{% for comment in comments %}
+<p>{{comment.body}}</p>
+<hr>
+{% endfor %}
+
 {% endblock content %}

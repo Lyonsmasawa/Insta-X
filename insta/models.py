@@ -26,7 +26,7 @@ class Image(models.Model):
 
     # TODO: Define fields here
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to = 'posts/')
+    image = models.ImageField(upload_to = 'static/images/')
     name = models.CharField(max_length=20)
     caption = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
@@ -38,12 +38,13 @@ class Image(models.Model):
 
         verbose_name = 'Image'
         verbose_name_plural = 'Images'
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         """Unicode representation of Image."""
         return self.name
 
-class Comments(models.Model):
+class Comment(models.Model):
     """Model definition for Comment."""
 
     # TODO: Define fields here
@@ -59,6 +60,7 @@ class Comments(models.Model):
 
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
+        ordering = ['-updated', '-created']
 
     def __str__(self):
         """Unicode representation of Comment."""
