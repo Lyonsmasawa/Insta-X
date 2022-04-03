@@ -74,8 +74,8 @@ class Comment(models.Model):
 
 
 LIKE_CHOICES = (
-    ('Like', 'Like')
-    ('Unlike', 'Unlike')
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
 )
 
 class Like(models.Model):
