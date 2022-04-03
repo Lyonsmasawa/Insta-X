@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+   <div>
+       <img src="../qw.jpg" alt="">
+       <h4>{{post.id}} -- {{post.name}}</h4>
+   </div>
+{% endfor %}
+        
+{% endblock content %}
+    
