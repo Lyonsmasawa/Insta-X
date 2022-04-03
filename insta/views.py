@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Image, Comment, Tag
@@ -10,7 +11,7 @@ from django.contrib.auth import authenticate, login ,logout
 
 # Create your views here.
 def loginPage(request):
-
+    page = 'login'
     if request.user.is_authenticated:
         return redirect('home')
 
@@ -32,13 +33,17 @@ def loginPage(request):
         else:
             messages.error(request, 'Invalid username or Password')
 
-    context = {}
+    context = {'page':page}
     return render(request, 'insta/login_register.html', context)
 
 def logoutUser(request):
     logout(request)
     return redirect('home')
 
+def registerPage(request):
+
+    context = {}
+    return render(request, 'insta/login_register.html', context)
 
 @login_required(login_url='login')
 def home(request):
