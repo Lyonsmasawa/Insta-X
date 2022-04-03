@@ -2,21 +2,41 @@
 {% load static %}
 {% block content %}
 
-<div>
-    <a href="{% url 'create-post' %}">add Post</a>
-</div>
+<style>
+    .home-cont {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
 
-<div>
-    {% for image in images %}
+<div class="home-cont">
     <div>
-        <a href="{% url 'update-post' image.id %}">edit Post</a>
-        <a href="{% url 'delete-post' image.id %}">Delete Post</a>
-        <p>@{{image.owner.username}}</p>
-        <img src="{{image.image.url}}" alt="" style="width: 10%;">
-        <h4><a href="{% url 'post' image.id %}">{{image.name}}</a> -- {{image.caption}}</h4>
-        <p>{{image.tags.name}}[0]</p>
+        <h3>explore</h3>
+        <p><a href="{% url 'home' %}">Posts</a></p>
+        {% for tag in tags %}
+        <p><a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}</a></p>
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    <div>
+        <div>
+            <a href="{% url 'create-post' %}">add Post</a>
+        </div>
+        {% for image in images %}
+        <div>
+            <a href="{% url 'update-post' image.id %}">edit Post</a>
+            <a href="{% url 'delete-post' image.id %}">Delete Post</a>
+            <p>@{{image.owner.username}}</p>
+            <img src="{{image.image.url}}" alt="" style="width: 10%;">
+            <h4><a href="{% url 'post' image.id %}">{{image.name}}</a> -- {{image.caption}}</h4>
+            <p>{{image.tags.name}}[0]</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div>
+        <h3>Based on your recent following</h3>
+    </div>
 </div>
 
 {% endblock content %}

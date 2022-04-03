@@ -6,8 +6,11 @@ from .forms import ImageForm
 # Create your views here.
 def home(request):
     images = Image.objects.all()
+    tags = Tag.objects.all()
 
-    context = {'images': images}
+    
+
+    context = {'images': images, 'tags': tags,}
     return render(request, 'insta/home.html', context)
 
 def post(request, pk):
