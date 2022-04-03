@@ -1,14 +1,20 @@
+import imp
 from multiprocessing import context
 from django.shortcuts import redirect, render
 from .models import Image, Comment, Tag
 from .forms import ImageForm
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
-    images = Image.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    images = Image.objects.filter(
+       Q(tags__name__icontains = q) |
+       Q(owner__username__icontains = q)
+    )
     tags = Tag.objects.all()
 
-    
+    if request.
 
     context = {'images': images, 'tags': tags,}
     return render(request, 'insta/home.html', context)
