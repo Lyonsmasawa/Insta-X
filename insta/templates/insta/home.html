@@ -3,12 +3,13 @@
 {% block content %}
 
 <div>
-    <a href="{% url 'create-post' %}">add Image</a>
+    <a href="{% url 'create-post' %}">add Post</a>
 </div>
 
 <div>
     {% for image in images %}
     <div>
+        <a href="{% url 'update-post' image.id %}">edit Post</a>
         <p>@{{image.owner.username}}</p>
         <img src="{{image.image.url}}" alt="" style="width: 10%;">
         <h4><a href="{% url 'post' image.id %}">{{image.name}}</a> -- {{image.caption}}</h4>

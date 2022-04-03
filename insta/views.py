@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import redirect, render
 from .models import Image, Comment, Tag
 from .forms import ImageForm
@@ -27,4 +28,17 @@ def createPost(request):
             return redirect('home')
 
     context = {'form': form}
+    return render(request, 'insta/post_form.html', context)
+
+def updatePost(request, pk):
+    image = Image.objects.get(id=pk)
+    form = ImageForm(instance=image)
+
+    if request.method == 'POST':
+        form =ImageForm(request.POST, request.FILES, instance=image)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {'form':form}
     return render(request, 'insta/post_form.html', context)
