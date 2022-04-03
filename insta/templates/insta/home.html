@@ -34,7 +34,7 @@
         {% for image in images %}
         <div>
             
-            {% if request.user != image.owner %}
+            {% if request.user == image.owner %}
             <a href="{% url 'update-post' image.id %}">edit Post</a>
             <a href="{% url 'delete-post' image.id %}">Delete Post</a>                 
             {% endif %}

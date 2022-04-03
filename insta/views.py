@@ -1,4 +1,3 @@
-from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Image, Comment, Tag
@@ -79,8 +78,16 @@ def post(request, pk):
     image = Image.objects.get(id=pk)
     comments = image.comment_set.all()
     tags = image.tags.all()
+
+    if request.method == 'POST':
+        comment = Comment.objects.create(
+            user = request.user,
+            image = image,
+            body = request.POST.get('body')
+        )
+        return redirect('post', pk=image.id)
     
-    context = {'image': image, 'comments':comments, 'tags':tags, }
+    context = {'image': image, 'comments':comments, 'tags':tags,}
     return render(request, 'insta/posts.html', context)
 
 @login_required(login_url='login')

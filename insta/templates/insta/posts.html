@@ -2,16 +2,37 @@
 
 
 {% block content %}
+{% if request.user == image.owner %}
+<a href="{% url 'update-post' image.id %}">edit Post</a>
+<a href="{% url 'delete-post' image.id %}">Delete Post</a>
+{% endif %}
+
 <img src="{{image.image.url}}" alt="" width="10%">
 <h5>{{image.name}}</h5>
+<p>{{image.caption}}</p>
 <hr>
 {% for tag in tags %}
 <p>{{tag}}</p>
 {% endfor %}
 <hr>
-{% for comment in comments %}
-<p>{{comment.body}}</p>
-<hr>
-{% endfor %}
+<div>
+    <h3>Comments</h3>
+    {% for comment in comments %}
+    <small>{{comment.user}} -- {{comment.created | timesince}}</small>
+    <p>{{comment.body}}</p>
+    <hr>
+    {% endfor %}
+
+
+    {% if request.user.is_authenticated %}
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="body" id="" placeholder="leave a comment">
+        </form>
+    </div>
+    {% endif %}
+
+</div>
 
 {% endblock content %}
