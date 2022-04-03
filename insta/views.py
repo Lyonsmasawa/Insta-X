@@ -10,14 +10,23 @@ from django.contrib.auth import authenticate, login ,logout
 def loginPage(request):
 
     if request.method == 'POST':
-        username = request.POST.get("username")
+        username = request.POST.get("username").lower()
         password = request.POST.get("password")
 
-    try:
-        user = User.objects.get(username=username)
+        try:
+          user = User.objects.get(username=username)
     
-    except:
-        messages.error(request, 'Invalid username or Password')
+        except:
+            messages.error(request, 'user does not exist')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Invalid username or Password')
+
 
     context = {}
     return render(request, 'insta/login_register.html', context)
