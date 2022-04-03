@@ -5,7 +5,7 @@
     <form action="" method="post">
         {% csrf_token %}
         <img src="{{obj.image.url}}" alt="" srcset="" width="10%">
-        <p>are you sure you want delete {{obj}}? </p>
+        <p>are you sure you want delete "{{obj | upper}}"? </p>
         <a href="{{request.META.HTTP_REFERER}}">Go back</a>
         <input type="submit" value="Confirm">
     </form>

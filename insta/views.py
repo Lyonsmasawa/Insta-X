@@ -134,3 +134,17 @@ def deletePost(request, pk):
     
     context = {'obj':image}
     return render(request, 'insta/delete.html', context)
+
+@login_required(login_url='login')
+def deleteComment(request, pk):
+    comment = Comment.objects.get(id=pk)
+
+    if request.user != comment.user:
+        return HttpResponse('This method is restricted')
+
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('home')
+    
+    context = {'obj':comment}
+    return render(request, 'insta/delete.html', context)
