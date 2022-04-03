@@ -36,7 +36,7 @@
             
             {% if request.user != image.owner %}
             <a href="{% url 'update-post' image.id %}">edit Post</a>
-            <a href="{% url 'delete-post' image.id %}">Delete Post</a>                
+            <a href="{% url 'delete-post' image.id %}">Delete Post</a>                 
             {% endif %}
                 
             <p>@{{image.owner.username}}</p>
