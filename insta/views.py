@@ -1,7 +1,6 @@
-from multiprocessing import context
-from unicodedata import name
 from django.shortcuts import redirect, render
 from .models import Image, Comment, Tag
+from .forms import ImageForm
 
 # Create your views here.
 def home(request):
@@ -19,6 +18,13 @@ def post(request, pk):
     return render(request, 'insta/posts.html', context)
 
 def createPost(request):
+    form = ImageForm()
 
-    context = {}
+    if request.method == 'POST':
+        form = ImageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {'form': form}
     return render(request, 'insta/post_form.html', context)
