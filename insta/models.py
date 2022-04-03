@@ -94,4 +94,4 @@ class Like(models.Model):
 
     def __str__(self):
         """Unicode representation of Like."""
-        return self.post
+        return str(self.image)
