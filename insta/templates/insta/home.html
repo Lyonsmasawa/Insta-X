@@ -20,7 +20,9 @@
  
     <div>
         
-        {% if images_count > 0 %}
+        {% if images_count == 1 %}
+        <h5>{{images_count}} post found</h5>
+        {% elif images_count > 1 %}
         <h5>{{images_count}} posts found</h5>
         {% elif images_count == -1 %}
         {% else %}
