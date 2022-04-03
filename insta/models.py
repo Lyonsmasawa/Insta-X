@@ -29,7 +29,7 @@ class Tag(models.Model):
     """Model definition for Tag."""
 
     # TODO: Define fields here
-    name = models.CharField(max_length=30, null=True, blank=True)
+    name = models.CharField(max_length=30)
 
     class Meta:
         """Meta definition for Tag."""

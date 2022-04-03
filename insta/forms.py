@@ -9,4 +9,4 @@ class ImageForm(ModelForm):
 
         model = Image
         fields = '__all__'
-        exclude = ['owner']
+        # exclude = ['owner']

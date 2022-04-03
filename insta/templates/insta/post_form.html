@@ -3,9 +3,9 @@
 
 {% block content %}
     <div>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{form.as_p}} 
+            {{form.as_p}}
             <!-- puts a p tag on each line -->
             <input type="submit" value="Submit"/>
         </form>
