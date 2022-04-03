@@ -90,6 +90,13 @@ def post(request, pk):
     context = {'image': image, 'comments':comments, 'tags':tags,}
     return render(request, 'insta/posts.html', context)
 
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    images = user.image_set.all()
+
+    context = {'user':user, 'images':images,}
+    return render(request, 'insta/profile.html', context)
+
 @login_required(login_url='login')
 def createPost(request): 
     form = ImageForm()
