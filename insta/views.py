@@ -30,7 +30,7 @@ def post(request, pk):
     context = {'image': image, 'comments':comments, 'tags':tags, }
     return render(request, 'insta/posts.html', context)
 
-def createPost(request):
+def createPost(request): 
     form = ImageForm()
 
     if request.method == 'POST':
