@@ -4,6 +4,11 @@
 {% block content %}
 <img src="{{image.image.url}}" alt="" width="10%">
 <h5>{{image.name}}</h5>
+<hr>
+{% for tag in tags %}
+<p>{{tag}}</p>
+{% endfor %}
+<hr>
 {% for comment in comments %}
 <p>{{comment.body}}</p>
 <hr>

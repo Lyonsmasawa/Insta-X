@@ -25,7 +25,7 @@ from django.contrib.auth.models import User
 #         """Unicode representation of Profile."""
 #         return self.profile_photo
 
-class Tags(models.Model):
+class Tag(models.Model):
     """Model definition for Tag."""
 
     # TODO: Define fields here
@@ -47,7 +47,7 @@ class Image(models.Model):
     # TODO: Define fields here
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'static/images/')
-    tags = models.ManyToManyField(Tags)
+    tags = models.ManyToManyField(Tag)
     name = models.CharField(max_length=20)
     caption = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
