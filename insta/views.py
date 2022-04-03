@@ -42,3 +42,12 @@ def updatePost(request, pk):
 
     context = {'form':form}
     return render(request, 'insta/post_form.html', context)
+
+def deletePost(request, pk):
+    image = Image.objects.get(id=pk)
+    if request.method == 'POST':
+        image.delete()
+        return redirect('home')
+    
+    context = {'obj':image}
+    return render(request, 'insta/delete.html', context)
