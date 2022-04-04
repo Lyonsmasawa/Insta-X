@@ -41,7 +41,7 @@
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'profile' request.user.profile.id %}">Profile</a>
                         <a class="dropdown-item" href="{% url 'update-user' %}">Settings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>

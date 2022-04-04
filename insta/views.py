@@ -49,6 +49,7 @@ def registerPage(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
+            Profile.objects.create(user=user,)
             login(request, user)
             return redirect('home')
         else:
@@ -62,7 +63,7 @@ def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     images = Image.objects.filter(
        Q(tags__name__icontains = q) |
-       Q(owner__username__icontains = q)
+       Q(owner__user__username__icontains = q)
     )
     tags = Tag.objects.all()
     users = User.objects.all()
@@ -93,12 +94,11 @@ def post(request, pk):
     return render(request, 'insta/posts.html', context)
 
 def userProfile(request, pk):
-    user = User.objects.get(id=pk)
+    user = Profile.objects.get(id=pk)
     images = user.image_set.all()
-    
-    profile = get_object_or_404(Profile, pk=pk)
 
-    context = {'user':user, 'images':images, 'profile':profile}
+
+    context = {'user':user, 'images':images,}
     return render(request, 'insta/profile.html', context)
 
 @login_required(login_url='login')
