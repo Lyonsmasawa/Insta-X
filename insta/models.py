@@ -25,7 +25,7 @@ class Profile(models.Model):
 
     def __str__(self):
         """Unicode representation of Profile."""
-        return self.profile_photo
+        return self.user.username
 
 class Tag(models.Model):
     """Model definition for Tag."""
@@ -47,7 +47,7 @@ class Image(models.Model):
     """Model definition for Image."""
 
     # TODO: Define fields here
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
     image = models.ImageField(upload_to = 'static/images/')
     tags = models.ManyToManyField(Tag)
     name = models.CharField(max_length=20)

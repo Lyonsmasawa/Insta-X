@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
-from .models import Image, Comment, Tag
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import Image, Comment, Tag, Profile
 from .forms import ImageForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -95,8 +95,10 @@ def post(request, pk):
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
     images = user.image_set.all()
+    
+    profile = get_object_or_404(Profile, pk=pk)
 
-    context = {'user':user, 'images':images,}
+    context = {'user':user, 'images':images, 'profile':profile}
     return render(request, 'insta/profile.html', context)
 
 @login_required(login_url='login')
