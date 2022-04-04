@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Image, Comment, Tag, Profile
-from .forms import ImageForm, ProfileForm
+from .forms import ImageForm, ProfileForm, FollowForm, UnFollowForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.models import User
@@ -98,6 +98,8 @@ def userProfile(request, pk):
     images = user.image_set.all()
 
     profile = get_object_or_404(Profile, pk=pk)
+    
+  
 
     context = {'user':user, 'images':images, 'profile':profile}
     return render(request, 'insta/profile.html', context)
@@ -174,13 +176,3 @@ def updateUser(request):
 
     context = {'form':form, 'user':user}
     return render(request, 'insta/update_user.html', context)
-
-def followerCount(request):
-    if request.method == 'POST':
-        value = request.POST['value']
-        user = request.POST['user']
-        follower = request.POST['follower']
-
-
-    context = {}
-    return render(request, 'insta/profile.html', context)

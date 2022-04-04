@@ -15,9 +15,7 @@ urlpatterns = [
     path('register/', views.registerPage, name="register"),
     path('profile/<str:pk>', views.userProfile, name="profile"),
     path('delete-comment/<str:pk>/', views.deleteComment, name="delete-comment"),
-    path('update-user/', views.updateUser, name="update-user"),   
-
-    path('followers_count', views.followerCount, name='followers')
+    path('update-user/', views.updateUser, name="update-user"),
     
 ]
 
