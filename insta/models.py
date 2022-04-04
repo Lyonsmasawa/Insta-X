@@ -89,17 +89,20 @@ class Comment(models.Model):
         """Unicode representation of Comment."""
         return self.body[0:50]
 
-# class Follower(models.Model):
-#     """Model definition for Follower."""
+class Follow(models.Model):
+    """Model definition for Follower."""
 
-#     # TODO: Define fields here
-#     Follower
-#     class Meta:
-#         """Meta definition for Follower."""
+    # TODO: Define fields here
+    when = models.DateTimeField(auto_now_add=True)
+    follow = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='follow')
+    followed = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followed')
 
-#         verbose_name = 'Follower'
-#         verbose_name_plural = 'Followers'
+    class Meta:
+        """Meta definition for Follower."""
 
-#     def __str__(self):
-#         """Unicode representation of Follower."""
-#         pass
+        verbose_name = 'Follower'
+        verbose_name_plural = 'Followers'
+
+    def __str__(self):
+        """Unicode representation of Follower."""
+        return self.pk

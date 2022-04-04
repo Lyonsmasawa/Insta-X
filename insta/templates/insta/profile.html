@@ -9,7 +9,17 @@
             <h1>{{user.username}}</h1>
             {{user.bio}}
             <img src="{{profile.profile_photo.url}}" alt="" style="width: 10%;">
+
+            <form action="{% url 'followers' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="user" value="{{request.user.username}}" readonly/>
+                <input type="hidden" name="follower" value="{{user.username}}" readonly/>
+                <input type="hidden" name="value" value="follow" readonly/>
+                <button type="submit">Follow</button>
+            </form>
+
             <a href="{% url 'update-user' %}">Edit Profile</a>
+
             <div><span>following</span> <span>followers</span></div>
         </div>
         {% for image in images %}

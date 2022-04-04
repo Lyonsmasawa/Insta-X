@@ -96,7 +96,7 @@ def post(request, pk):
 def userProfile(request, pk):
     user = Profile.objects.get(id=pk)
     images = user.image_set.all()
-    
+
     profile = get_object_or_404(Profile, pk=pk)
 
     context = {'user':user, 'images':images, 'profile':profile}
@@ -174,3 +174,13 @@ def updateUser(request):
 
     context = {'form':form, 'user':user}
     return render(request, 'insta/update_user.html', context)
+
+def followerCount(request):
+    if request.method == 'POST':
+        value = request.POST['value']
+        user = request.POST['user']
+        follower = request.POST['follower']
+
+
+    context = {}
+    return render(request, 'insta/profile.html', context)
