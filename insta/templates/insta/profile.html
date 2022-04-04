@@ -10,18 +10,11 @@
             {{user.bio}}
             <img src="{{profile.profile_photo.url}}" alt="" style="width: 10%;">
 
-            <!-- <form action="{% url 'followers' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="user" value="{{request.user.username}}" readonly/>
-                <input type="hidden" name="follower" value="{{user.username}}" readonly/>
-                <input type="hidden" name="value" value="follow" readonly/>
-                <button type="submit">Follow</button>
-            </form> -->
             {%if profile.user.username == request.user.username%}
             {% else%}
 
             {% if follow_form %}
-            
+
             <form action="{% url 'profile' profile.id %}" method="post" style="margin-top: 2rem;">
                 {%csrf_token%}
                 {% bootstrap_form follow_form%}

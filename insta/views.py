@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from .models import Image, Comment, Tag, Profile
+from .models import Image, Comment, Tag, Profile, Follow
 from .forms import ImageForm, ProfileForm, FollowForm, UnFollowForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -98,10 +98,58 @@ def userProfile(request, pk):
     images = user.image_set.all()
 
     profile = get_object_or_404(Profile, pk=pk)
-    
-  
 
-    context = {'user':user, 'images':images, 'profile':profile}
+    whoIsFollowing = Profile.objects.get(user = request.user)
+    whoToFollow = Profile.objects.get(id = user.id)
+
+    if request.method == 'POST':
+        if 'follow' in request.POST:
+            form = FollowForm(request.POST)
+            if form.is_valid():
+                form_data = form.save(commit=False)
+                form_data.followed = whoToFollow
+                form_data.follower = whoIsFollowing
+                form_data.save()
+
+                get_followers=Follow.objects.filter(followed=whoToFollow)
+                followers_count=len(get_followers)
+
+                whoToFollow.followers = followers_count
+                whoToFollow.save()
+
+                get_following=Follow.objects.filter(follower=whoIsFollowing)
+                num_of_following=len(get_following)
+                
+                whoIsFollowing.following=num_of_following
+                whoIsFollowing.save()
+
+            return redirect('profile', profile.id)
+             
+        elif 'unfollow' in request.POST:
+            form = UnFollowForm(request.POST)
+            if form.is_valid():
+                form_data = form.save(commit=False)
+                form_data = Follow.objects.filter(followed =whoToFollow, follower = whoIsFollowing)
+                form_data.delete()                
+
+                get_followers=Follow.objects.filter(followed =whoToFollow)
+                followers_count=len(get_followers)
+
+                whoToFollow.followers= followers_count
+                whoToFollow.save()
+
+                get_following=Follow.objects.filter(follower = whoIsFollowing)
+                num_of_following=len(get_following)
+
+                whoIsFollowing.following=num_of_following
+                whoIsFollowing.save()
+
+            return redirect('profile', profile.id)
+    else:
+        follow_form = FollowForm()
+        unfollow_form = UnFollowForm()
+
+    context = {'user':user, 'images':images, 'profile':profile, 'unfollow_form':unfollow_form, 'follow_form':follow_form,}
     return render(request, 'insta/profile.html', context)
 
 @login_required(login_url='login')
