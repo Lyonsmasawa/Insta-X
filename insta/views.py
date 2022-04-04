@@ -108,7 +108,7 @@ def userProfile(request, pk):
             if form.is_valid():
                 form_data = form.save(commit=False)
                 form_data.followed = whoToFollow
-                form_data.follower = whoIsFollowing
+                form_data.follow = whoIsFollowing
                 form_data.save()
 
                 get_followers=Follow.objects.filter(followed=whoToFollow)
@@ -117,10 +117,10 @@ def userProfile(request, pk):
                 whoToFollow.followers = followers_count
                 whoToFollow.save()
 
-                get_following=Follow.objects.filter(follower=whoIsFollowing)
-                num_of_following=len(get_following)
+                get_following=Follow.objects.filter(follow=whoIsFollowing)
+                following_count=len(get_following)
                 
-                whoIsFollowing.following=num_of_following
+                whoIsFollowing.following=following_count
                 whoIsFollowing.save()
 
             return redirect('profile', profile.id)
@@ -132,16 +132,16 @@ def userProfile(request, pk):
                 form_data = Follow.objects.filter(followed =whoToFollow, follower = whoIsFollowing)
                 form_data.delete()                
 
-                get_followers=Follow.objects.filter(followed =whoToFollow)
+                get_followers=Follow.objects.filter(followed=whoToFollow)
                 followers_count=len(get_followers)
 
                 whoToFollow.followers= followers_count
                 whoToFollow.save()
 
-                get_following=Follow.objects.filter(follower = whoIsFollowing)
-                num_of_following=len(get_following)
+                get_following=Follow.objects.filter(follow = whoIsFollowing)
+                following_count=len(get_following)
 
-                whoIsFollowing.following=num_of_following
+                whoIsFollowing.following=following_count
                 whoIsFollowing.save()
 
             return redirect('profile', profile.id)
