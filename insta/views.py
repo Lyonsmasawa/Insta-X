@@ -97,7 +97,6 @@ def userProfile(request, pk):
     user = Profile.objects.get(id=pk)
     images = user.image_set.all()
 
-
     context = {'user':user, 'images':images,}
     return render(request, 'insta/profile.html', context)
 
