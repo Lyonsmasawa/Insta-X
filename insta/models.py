@@ -10,7 +10,7 @@ class Profile(models.Model):
 
     # TODO: Define fields here
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_photo = models.ImageField(upload_to = 'profiles/')
+    profile_photo = models.ImageField()
     bio = models.TextField(null=True, blank=True)
     followers = models.IntegerField(default=0)
     following = models.IntegerField(default=0)
@@ -48,7 +48,7 @@ class Image(models.Model):
 
     # TODO: Define fields here
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to = 'static/images/')
+    image = models.ImageField()
     tags = models.ManyToManyField(Tag)
     name = models.CharField(max_length=20)
     caption = models.TextField(null=True, blank=True)

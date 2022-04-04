@@ -8,7 +8,8 @@
         <div>
             <h1>{{user.username}}</h1>
             {{user.bio}}
-            <img src="{{profile.profile_photo.url}}" alt="" >
+            <img src="{{profile.profile_photo.url}}" alt="" style="width: 10%;">
+            <a href="{% url 'update-user' %}">Edit Profile</a>
             <div><span>following</span> <span>followers</span></div>
         </div>
         {% for image in images %}
