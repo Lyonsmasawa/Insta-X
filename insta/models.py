@@ -49,7 +49,6 @@ class Image(models.Model):
     # TODO: Define fields here
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
     image = models.ImageField()
-    tags = models.ManyToManyField(Tag)
     name = models.CharField(max_length=20)
     caption = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)

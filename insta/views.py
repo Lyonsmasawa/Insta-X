@@ -62,10 +62,10 @@ def registerPage(request):
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     images = Image.objects.filter(
-       Q(tags__name__icontains = q) |
+       Q(name__icontains = q) |
        Q(owner__user__username__icontains = q)
     )
-    tags = Tag.objects.all()
+
     users = User.objects.all()
 
     if request.GET.get('q') != None:
@@ -73,7 +73,7 @@ def home(request):
     else:
         images_count = -1
 
-    context = {'images': images, 'tags': tags, 'images_count': images_count, 'users':users, }
+    context = {'images': images, 'images_count': images_count, 'users':users, }
     return render(request, 'insta/home.html', context)
 
 @login_required(login_url='login')
@@ -101,6 +101,8 @@ def userProfile(request, pk):
 
     whoIsFollowing = Profile.objects.get(user = request.user)
     whoToFollow = Profile.objects.get(id = user.id)
+    isFollowing = Follow.objects.filter(followed = whoToFollow, follow = whoIsFollowing) 
+    posts_count = images.count()
 
     if request.method == 'POST':
         if 'follow' in request.POST:
@@ -129,7 +131,7 @@ def userProfile(request, pk):
             form = UnFollowForm(request.POST)
             if form.is_valid():
                 form_data = form.save(commit=False)
-                form_data = Follow.objects.filter(followed =whoToFollow, follower = whoIsFollowing)
+                form_data = Follow.objects.filter(followed =whoToFollow, follow = whoIsFollowing)
                 form_data.delete()                
 
                 get_followers=Follow.objects.filter(followed=whoToFollow)
@@ -149,7 +151,7 @@ def userProfile(request, pk):
         follow_form = FollowForm()
         unfollow_form = UnFollowForm()
 
-    context = {'user':user, 'images':images, 'profile':profile, 'unfollow_form':unfollow_form, 'follow_form':follow_form,}
+    context = {'user':user, 'images':images, 'profile':profile, 'unfollow_form':unfollow_form, 'follow_form':follow_form,'isFollowing':isFollowing,'posts_count':posts_count,}
     return render(request, 'insta/profile.html', context)
 
 @login_required(login_url='login')
@@ -159,7 +161,9 @@ def createPost(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            new = form.save(commit=False)
+            new.owner = request.user
+            new.save()
             return redirect('home')
 
     context = {'form': form}
