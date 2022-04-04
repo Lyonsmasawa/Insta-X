@@ -10,7 +10,7 @@
         &nbsp;<small><strong><a href="{% url 'profile' image.owner.id %}" class="text-decoration-none text-reset">
                     {{image.owner.username}}</a></strong></small>
         <span>
-            {% if request.user == image.owner %}
+            {% if request.user == image.owner.user %}
             <a href="{% url 'update-post' image.id %}"><i class="fas fa-edit"></i></a>
             <a href="{% url 'delete-post' image.id %}"><i class="fa fa-times"></i></a>
             {% endif %}

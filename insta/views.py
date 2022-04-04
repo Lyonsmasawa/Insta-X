@@ -176,7 +176,7 @@ def updatePost(request, pk):
     form = ImageForm(instance=image)
 
     
-    if request.user != image.owner:
+    if request.user != image.owner.user:
         return HttpResponse('This method is restricted')
         
     if request.method == 'POST':
@@ -192,7 +192,7 @@ def updatePost(request, pk):
 def deletePost(request, pk):
     image = Image.objects.get(id=pk)
 
-    if request.user != image.owner:
+    if request.user != image.owner.user:
         return HttpResponse('This method is restricted')
 
     if request.method == 'POST':
