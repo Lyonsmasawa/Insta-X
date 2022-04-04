@@ -3,6 +3,7 @@ from pyexpat import model
 from random import choices
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ModelForm
 
 # Create your models here.
 class Profile(models.Model):
@@ -53,7 +54,7 @@ class Image(models.Model):
     caption = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True) #auto_now takes a snapshot everytime a save occures while auto_now_add takes a snapshot only one the first time a save occures
-    # likes = models.ManyToManyField(User, related_name='likes', default=None, blank=True)
+    liked = models.ManyToManyField(User, related_name='likes', default=None, blank=True)
 
     class Meta:
         """Meta definition for Image."""
@@ -101,7 +102,33 @@ class Follow(models.Model):
 
         verbose_name = 'Follower'
         verbose_name_plural = 'Followers'
+        ordering = ['-when']
 
     def __str__(self):
         """Unicode representation of Follower."""
+        return self.pk
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
+)
+
+class Like(models.Model):
+    """Model definition for Like."""
+
+    # TODO: Define fields here
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        """Meta definition for Like."""
+
+        verbose_name = 'Like'
+        verbose_name_plural = 'Likes'
+        ordering = ['-created']
+
+    def __str__(self):
+        """Unicode representation of Like."""
         return self.pk
