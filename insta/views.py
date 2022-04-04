@@ -96,8 +96,10 @@ def post(request, pk):
 def userProfile(request, pk):
     user = Profile.objects.get(id=pk)
     images = user.image_set.all()
+    
+    profile = get_object_or_404(Profile, pk=pk)
 
-    context = {'user':user, 'images':images,}
+    context = {'user':user, 'images':images, 'profile':profile}
     return render(request, 'insta/profile.html', context)
 
 @login_required(login_url='login')

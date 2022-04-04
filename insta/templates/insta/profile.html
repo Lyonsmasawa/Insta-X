@@ -7,7 +7,8 @@
     <div class="row">
         <div>
             <h1>{{user.username}}</h1>
-            {{profile.bio}}
+            {{user.bio}}
+            <img src="{{profile.profile_photo.url}}" alt="" >
             <div><span>following</span> <span>followers</span></div>
         </div>
         {% for image in images %}
