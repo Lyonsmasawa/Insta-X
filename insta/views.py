@@ -241,7 +241,7 @@ def likePost(request):
         else:
             image_obj.liked.add(user)
 
-        like, created = Like.objects.get_or_create(user = user, image = image_id)
+        like, created = Like.objects.get_or_create(user = user, image = image_obj)
 
         if not created:
             if like.value == 'Like':
@@ -249,5 +249,5 @@ def likePost(request):
             else:
                 like.value = 'Like'
         like.save()
-        
+
     return redirect(request.META.get('HTTP_REFERER'))
