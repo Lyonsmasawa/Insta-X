@@ -58,7 +58,7 @@ img {
 
 a {
     display: inline-block;
-    color: var(--color-main);
+    color: black;
     text-decoration: none;
 }
 
@@ -76,6 +76,7 @@ a {
     align-items: center;
     gap: 1rem;
     cursor: pointer;
+    color: white;
     transition: all ease-in-out 0.3s;
     padding: 1rem 2rem;
     border-radius: 5px;
@@ -86,7 +87,7 @@ a {
 .btn--link {
     border-radius: 0;
     padding: 0;
-    color: var(--color-main);
+    color: black;
     box-shadow: none;
 }
 
@@ -95,8 +96,8 @@ a {
 }
 
 .btn--main {
-    background-color: var(--color-main);
-    color: var(--color-dark);
+    background-color: black;
+    color: white;
 }
 
 .btn:hover {
@@ -104,8 +105,8 @@ a {
 }
 
 .btn--dark {
-    background-color: var(--color-dark-light);
-    color: var(--color-light);
+    background-color: white;
+    color: black;
 }
 
 .btn>svg {
@@ -119,9 +120,9 @@ a {
     font-size: 1.4rem;
     font-weight: 700;
     padding: 6px 2.5rem;
-    color: var(--color-main);
+    color: black;
     background: transparent;
-    border: 2px solid var(--color-main);
+    border: 2px solid black;
 }
 
 .action-button {
@@ -225,7 +226,7 @@ a {
 }
 
 .dropdown-menu a {
-    padding: 1.2rem 4rem;
+    padding: 1rem 4rem;
     display: block;
     color: black !important;
     font-weight: 500;
@@ -233,7 +234,8 @@ a {
 }
 
 .dropdown-menu a:hover {
-    background-color: var(--color-dark-medium);
+    background-color: rgb(0, 0, 0);
+    color: white !important;
 }
 
 .dropdown-menu>a:not(:last-child) {
@@ -457,7 +459,7 @@ a {
 .layout__boxTitle svg {
     width: 1.6rem;
     height: 1.6rem;
-    fill: var(--color-main);
+    fill: black;
 }
 
 .layout__body {
@@ -500,18 +502,18 @@ a {
 .form__group textarea,
 .form__group select {
     background: transparent;
-    border: 1px solid var(--color-dark-light);
+    border: 1px solid black;
     padding: 1rem;
     border-radius: 3px;
     width: 100%;
-    color: var(--color-light);
+    color: black;
     font-weight: 500;
     outline: none;
 }
 
 .form__group input:focus,
 .form__group textarea:focus {
-    border-color: var(--color-main);
+    border-color: black;
 }
 
 .form__group textarea {
@@ -521,13 +523,13 @@ a {
 }
 
 .form__group select {
-    color: var(--color-gray);
+    color: black;
     font-weight: 400;
 }
 
 .form__group select option {
-    background-color: var(--color-dark-light);
-    color: var(--color-light);
+    background-color: white;
+    color: black;
     padding: 0 10rem;
 }
 
