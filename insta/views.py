@@ -1,7 +1,7 @@
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from .models import Image, Comment, Tag, Profile, Follow
+from .models import Image, Comment, Like, Tag, Profile, Follow
 from .forms import ImageForm, ProfileForm, FollowForm, UnFollowForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -241,4 +241,13 @@ def likePost(request):
         else:
             image_obj.liked.add(user)
 
+        like, created = Like.objects.get_or_create(user = user, image = image_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+        like.save()
+        
     return redirect(request.META.get('HTTP_REFERER'))

@@ -106,7 +106,7 @@ class Follow(models.Model):
 
     def __str__(self):
         """Unicode representation of Follower."""
-        return self.pk
+        return str(self.when)
 
 LIKE_CHOICES = (
     ('Like', 'Like'),
@@ -131,4 +131,4 @@ class Like(models.Model):
 
     def __str__(self):
         """Unicode representation of Like."""
-        return self.pk
+        return str(self.created)
