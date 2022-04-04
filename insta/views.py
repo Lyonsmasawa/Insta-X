@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Image, Comment, Tag, Profile
-from .forms import ImageForm
+from .forms import ImageForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.models import User
@@ -163,6 +163,14 @@ def deleteComment(request, pk):
 
 @login_required(login_url='login')
 def updateUser(request):
+    user = request.user.profile
+    form = ProfileForm(instance=user)
+    
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+        return redirect('profile', request.user.profile.id)
 
-    context = {}
+    context = {'form':form, 'user':user}
     return render(request, 'insta/update_user.html', context)
