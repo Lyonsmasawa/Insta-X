@@ -1,44 +1,38 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
+<div class="container">
+    <div class="row justify-content-center" style="gap:20px">
+        <div class="col-md-6">
+            {% if images_count == 1 %}
+            <h5>{{images_count}} post found</h5>
+            {% elif images_count > 1 %}
+            <h5>{{images_count}} posts found</h5>
+            {% elif images_count == -1 %}
+            {% else %}
+            <h5>{{images_count}} posts found</h5>
+            {% endif %}
+            <!-- <a href="{% url 'create-post' %}">add Post</a> -->
+            {% include 'insta/feed_component.html' %}
+        </div>
 
-<style>
-    .home-cont {
-        display: grid;
-        grid-template-columns: 1fr 3fr 1fr;
-    }
-</style>
 
-<div class="home-cont">
-    <div>
-        <h3>explore</h3>
-        <p><a href="{% url 'home' %}">Posts</a></p>
-        {% for tag in tags %}
-        <p><a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}</a></p>
-        {% endfor %}
-    </div>
- 
-    <div>
-        
-        {% if images_count == 1 %}
-        <h5>{{images_count}} post found</h5>
-        {% elif images_count > 1 %}
-        <h5>{{images_count}} posts found</h5>
-        {% elif images_count == -1 %}
-        {% else %}
-        <h5>{{images_count}} posts found</h5>
-        {% endif %}
-            
-        <a href="{% url 'create-post' %}">add Post</a>
+        <div class="col-md-3">
+            <p>suggestions for you</p>
 
-       <div>
-           {% include 'insta/feed_component.html' %}
-       </div>
-    </div>
+            {% for user in users %}
+            <li class="text-reset"><a href="{% url 'profile' user.id %}">{{user.username}}</a></li>
+            {% endfor %}
 
-    <div>
-        <h3>Based on your recent following</h3>
+            <!-- <div>
+                <p>explore</p>
+                <p><a href="{% url 'home' %}">Posts</a></p>
+                {% for tag in tags %}
+                <p><a href="{% url 'home' %}?q={{tag.name}}">{{tag.name}}</a></p>
+                {% endfor %}
+            </div> -->
+
+        </div>
     </div>
 </div>
-
 {% endblock content %}

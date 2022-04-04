@@ -1,14 +1,35 @@
 {% for image in images %}
-<div>
-    
-    {% if request.user == image.owner %}
-    <a href="{% url 'update-post' image.id %}">edit Post</a>
-    <a href="{% url 'delete-post' image.id %}">Delete Post</a>                 
-    {% endif %}
-        
-    <a href="{% url 'profile' image.owner.id %}">@{{image.owner.username}}</a>
-    <img src="{{image.image.url}}" alt="" style="width: 10%;">
-    <h4><a href="{% url 'post' image.id %}">{{image.name}}</a> -- {{image.caption}}</h4>
-    <p>{{image.tags.name}}[0]</p>
+<div class="card mx-auto mb-5" style="max-width: 40rem;">
+    <div class="card-header d-flex flex-row"">
+        {% if image.owner.profile_photo %}
+        <img src=" {{ image.owner.profile_photo.url }}" class="rounded-circle z-depth-0" style="width: 5%;">
+        {% else %}
+        <img src="https://cdn-icons.flaticon.com/png/512/1144/premium/1144811.png?token=exp=1649023979~hmac=5aaf8ccfad0ac8bb64b6c964a16c4716"
+            alt="" class="rounded-circle z-depth-0" style="width: 5%;">
+        {%endif%}
+        &nbsp;<small><strong><a href="{% url 'profile' image.owner.id %}" class="text-decoration-none text-reset">
+                    {{image.owner.username}}</a></strong></small>
+        <span>
+            {% if request.user == image.owner %}
+            <a href="{% url 'update-post' image.id %}"><i class="fas fa-edit"></i></a>
+            <a href="{% url 'delete-post' image.id %}"><i class="fa fa-times"></i></a>
+            {% endif %}
+        </span>
+    </div>
+    <div class="card-body p-0">
+        <img src="{{image.image.url}}" alt="{{image.name}}" style="width: 100%;">
+        <p class="card-title m-0"><strong>{{image.name}}</strong></p>
+        <p class="card-text m-0"><small>{{image.caption}}</small></p>
+    </div>
+    <div class="card-footer">
+        {% if request.user.is_authenticated %}
+        <div>
+            <form action="" class="form-group" method="post" class="m-0">
+                {% csrf_token %}
+                <input type="text" class="form-control m-0 p-0 nosub" name="body" id="" placeholder=". .  . leave a comment">
+            </form>
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endfor %}

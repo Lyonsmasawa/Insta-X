@@ -2,8 +2,20 @@
 
 
 {% block content %}
-    <h1>{{user.username}}</h1>
-    <div>
-        {% include 'insta/feed_component.html' %}
+<div class="container prof">
+
+    <div class="row">
+        <div>
+            <h1>{{user.username}}</h1>
+        </div>
+        {% for image in images %}
+        <div class="col-md-3 h-100">
+            <div class="mx-auto mb-5" style="max-width: 40rem;">
+                <img src="{{image.image.url}}" alt="{{image.name}}" style="width: 100%;">
+            </div>
+        </div>
+        {% endfor %}
+
     </div>
+</div>
 {% endblock content %}

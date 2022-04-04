@@ -64,13 +64,14 @@ def home(request):
        Q(owner__username__icontains = q)
     )
     tags = Tag.objects.all()
+    users = User.objects.all()
 
     if request.GET.get('q') != None:
         images_count = images.count()
     else:
         images_count = -1
 
-    context = {'images': images, 'tags': tags, 'images_count': images_count, }
+    context = {'images': images, 'tags': tags, 'images_count': images_count, 'users':users, }
     return render(request, 'insta/home.html', context)
 
 @login_required(login_url='login')
