@@ -228,3 +228,8 @@ def updateUser(request):
 
     context = {'form':form, 'user':user}
     return render(request, 'insta/update_user.html', context)
+
+def likePost(request):
+
+    context = {}
+    return redirect(request, 'home')

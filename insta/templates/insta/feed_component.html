@@ -21,6 +21,19 @@
         <p class="card-title m-0"><strong>{{image.name}}</strong></p>
         <p class="card-text m-0"><small>{{image.caption}}</small></p>
     </div>
+    <form action="{% url 'like' %}" method="post">
+
+        <input type="hidden" value="{{image.id}}" name="image_id">
+        
+        {% if user not in image.liked.all %}
+        <button type="submit" class="fa fa-heart positive">like</button>
+        {% else %}
+        <button type="submit" class="fa fa-heart negative">unlike</button>
+        {% endif %}
+
+            
+    </form>
+    <strong>{{image.liked.all.count}} Likes</strong>
     <div class="card-footer">
         {% if request.user.is_authenticated %}
         <div>
