@@ -9,7 +9,7 @@ class Profile(models.Model):
     """Model definition for Profile."""
 
     # TODO: Define fields here
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_photo = models.ImageField(upload_to = 'profiles/')
     bio = models.TextField(null=True, blank=True)
     followers = models.IntegerField(default=0)
