@@ -157,12 +157,13 @@ def userProfile(request, pk):
 @login_required(login_url='login')
 def createPost(request): 
     form = ImageForm()
+    user = request.user.profile
 
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             new = form.save(commit=False)
-            new.owner = request.user
+            new.owner = user
             new.save()
             return redirect('home')
 
@@ -232,4 +233,4 @@ def updateUser(request):
 def likePost(request):
 
     context = {}
-    return redirect(request, 'home')
+    return redirect(request.META.get('HTTP_REFERER'))

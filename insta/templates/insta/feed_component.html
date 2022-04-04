@@ -22,16 +22,16 @@
         <p class="card-text m-0"><small>{{image.caption}}</small></p>
     </div>
     <form action="{% url 'like' %}" method="post">
-
+        {% csrf_token %}
         <input type="hidden" value="{{image.id}}" name="image_id">
-        
+
         {% if user not in image.liked.all %}
         <button type="submit" class="fa fa-heart positive">like</button>
         {% else %}
         <button type="submit" class="fa fa-heart negative">unlike</button>
         {% endif %}
 
-            
+
     </form>
     <strong>{{image.liked.all.count}} Likes</strong>
     <div class="card-footer">
@@ -39,7 +39,8 @@
         <div>
             <form action="" class="form-group" method="post" class="m-0">
                 {% csrf_token %}
-                <input type="text" class="form-control m-0 p-0 nosub" name="body" id="" placeholder=". .  . leave a comment">
+                <input type="text" class="form-control m-0 p-0 nosub" name="body" id=""
+                    placeholder=". .  . leave a comment">
             </form>
         </div>
         {% endif %}
