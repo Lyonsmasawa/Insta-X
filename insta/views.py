@@ -231,6 +231,14 @@ def updateUser(request):
     return render(request, 'insta/update_user.html', context)
 
 def likePost(request):
+    user = request.user
+    if request.method == 'POST':
+        image_id = request.POST.get("image_id")
+        image_obj = Image.objects.get(id = image_id)
 
-    context = {}
+        if user in image_obj.liked.all():
+            image_obj.liked.remove(user)
+        else:
+            image_obj.liked.add(user)
+
     return redirect(request.META.get('HTTP_REFERER'))
