@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Image, Comment, Tag
@@ -156,3 +157,9 @@ def deleteComment(request, pk):
     
     context = {'obj':comment}
     return render(request, 'insta/delete.html', context)
+
+@login_required(login_url='login')
+def updateUser(request):
+
+    context = {}
+    return render(request, 'insta/update_user.html', context)

@@ -5,25 +5,27 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-# class Profile(models.Model):
-#     """Model definition for Profile."""
+class Profile(models.Model):
+    """Model definition for Profile."""
 
-#     # TODO: Define fields here
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     profile_photo = models.ImageField(upload_to = 'profiles/')
-#     bio = models.TextField(null=True, blank=True)
-#     updated = models.DateTimeField(auto_now=True)
-#     created = models.DateTimeField(auto_now_add=True) #auto_now takes a snapshot everytime a save occures while auto_now_add takes a snapshot only one the first time a save occures
+    # TODO: Define fields here
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    profile_photo = models.ImageField(upload_to = 'profiles/')
+    bio = models.TextField(null=True, blank=True)
+    followers = models.IntegerField(default=0)
+    following = models.IntegerField(default=0)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True) #auto_now takes a snapshot everytime a save occures while auto_now_add takes a snapshot only one the first time a save occures
    
-#     class Meta:
-#         """Meta definition for Profile."""
+    class Meta:
+        """Meta definition for Profile."""
 
-#         verbose_name = 'Profile'
-#         verbose_name_plural = 'Profiles'
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
 
-#     def __str__(self):
-#         """Unicode representation of Profile."""
-#         return self.profile_photo
+    def __str__(self):
+        """Unicode representation of Profile."""
+        return self.profile_photo
 
 class Tag(models.Model):
     """Model definition for Tag."""
@@ -87,4 +89,17 @@ class Comment(models.Model):
         """Unicode representation of Comment."""
         return self.body[0:50]
 
+# class Follower(models.Model):
+#     """Model definition for Follower."""
 
+#     # TODO: Define fields here
+#     Follower
+#     class Meta:
+#         """Meta definition for Follower."""
+
+#         verbose_name = 'Follower'
+#         verbose_name_plural = 'Followers'
+
+#     def __str__(self):
+#         """Unicode representation of Follower."""
+#         pass
