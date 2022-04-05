@@ -39,8 +39,8 @@
                 <button type="submit" class="btn-transparent fa fa-heart icon-x text-red"></button>
                 {% endif %}
             </form>
-            <a href=""> <i class="far fa-message icon-x"></i></a>
-            <a> <i class="far fa-paper-plane icon-x"></i></a>
+            <a href="{% url 'post' image.id %}"> <i class="far fa-message icon-x"></i></a>
+            <a href="{% url 'post' image.id %}"> <i class="far fa-paper-plane icon-x"></i></a>
         </div>
         <div class="likex">
             <p class="material-icons">&#xE87C;</p>
