@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login ,logout
-from django.contrib.auth.forms import UserCreationForm
+from .forms import UserCreationForm
 from .email import send_welcome_email
 
 # Create your views here.
