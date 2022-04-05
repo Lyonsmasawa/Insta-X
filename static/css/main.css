@@ -1293,3 +1293,8 @@ input.nosub {
     display: grid;
     grid-template-columns: 3fr 1fr;
 }
+.side{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
