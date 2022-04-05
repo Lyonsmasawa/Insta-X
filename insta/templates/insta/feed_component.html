@@ -49,21 +49,29 @@
         <div>
             <span><strong>{{image.owner.user.username}}</strong></span>
             <span class="card-text m-0"><small>{{image.caption}}</small></span>
-        </div>
-        <div>
-            <br>
-            <h3>Comments</h3>
-            {% for comment in image.comment_set.all %}
 
-            {% if request.user == comment.user %}
-            <a href="{% url 'delete-comment' comment.id %}">Delete</a>
-            {% endif %}
-            <small>{{comment.user}} -- {{comment.created | timesince}}</small>
-            <p>{{comment.body}}</p>
-            <hr>
-            {% endfor %}
+            <div class="m-0">
+                <a href="{% url 'post' image.id %}">
+                    <p class="p-0 m-0">View Comments</p>
+                </a>
+            </div>
+
+            <div class="container">
+                {% for comment in image.comment_set.all %}
+                <div class="commentx">
+                    <div>
+                        <small><strong>{{comment.user}}</strong> {{comment.body}}</small>
+                    </div>
+                    <div>
+                        {% if request.user == comment.user %}
+                        <a href="{% url 'delete-comment' comment.id %}"><i class="fa fa-times"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
         </div>
-        
     </div>
     <div class="card-footer">
         {% if request.user.is_authenticated %}
@@ -72,8 +80,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="image_id" value="{{image.id}}">
                 <span class="material-icons">&#xE87C;</span>
-                <input type="text" class="form-control m-0 p-0" name="body" id=""
-                    placeholder=". .  . leave a comment">
+                <input type="text" class="form-control m-0 p-0" name="body" id="" placeholder=". .  . leave a comment">
             </form>
         </div>
         {% endif %}

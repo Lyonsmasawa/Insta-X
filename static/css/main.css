@@ -1265,3 +1265,8 @@ input.nosub {
     align-items: center;
     padding-top: .2%;
 }
+.commentx{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
