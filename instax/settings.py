@@ -14,7 +14,6 @@ from multiprocessing import process
 from pathlib import Path
 import os
 import django_heroku
-import dj_database_url
 from decouple import config,Csv
 import cloudinary
 import cloudinary.uploader
@@ -105,6 +104,12 @@ DATABASES = {
     }
 }
 
+
+cloudinary.config(
+  cloud_name = config('CLOUDINARY_CLOUD_NAME'),
+  api_key = config('CLOUDINARY_API_KEY'),
+  api_secret = config('CLOUDINARY_API_SECRET'),
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
