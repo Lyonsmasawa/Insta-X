@@ -1,9 +1,5 @@
-from ast import Mod
-from pyexpat import model
-from random import choices
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import EmailField, ModelForm
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
@@ -14,7 +10,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_photo = CloudinaryField('image')
     bio = models.TextField(null=True, blank=True)
-    email = EmailField()
     followers = models.IntegerField(default=0)
     following = models.IntegerField(default=0)
     updated = models.DateTimeField(auto_now=True)
