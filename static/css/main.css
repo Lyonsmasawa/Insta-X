@@ -1186,10 +1186,11 @@ input.nosub {
 }
 
 .prof {
-   padding-left: 2rem;
-   padding-right: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
-.full-profile{
+
+.full-profile {
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 20px;
@@ -1197,25 +1198,45 @@ input.nosub {
     padding-bottom: 2.5rem;
 }
 
-.photo{
+.photo {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.details{
+
+.details {
     display: flex;
     gap: 20px;
 }
-.counts{
-    gap:20px;
+
+.counts {
+    gap: 20px;
 }
-.counts-det{
+
+.counts-det {
     display: flex;
     gap: 1rem;
 }
-.images-list{
+
+.images-list {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.text-red {
+    color: red;
+}
+
+.btn-transparent{
+    background-color: transparent;
+    border: none;
+}
+
+.fa-heart{
+    font-size: 1.5rem;
+}
+.fa-solid{
+    background: transparent;
 }
