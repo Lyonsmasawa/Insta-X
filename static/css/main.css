@@ -932,7 +932,7 @@ a {
 .thread__top svg {
     width: 1.6rem;
     height: 1.6rem;
-    fill: var(--color-light);
+    fill: white;
     cursor: pointer;
 }
 
@@ -952,7 +952,7 @@ a {
 .room__topLeft svg {
     width: 1.6rem;
     height: 1.6rem;
-    fill: var(--color-light);
+    fill: white;
 }
 
 .room__topRight {
@@ -961,7 +961,7 @@ a {
 }
 
 .room__topRight svg {
-    fill: var(--color-main-light);
+    fill: white;
 }
 
 .room__header {
@@ -1304,6 +1304,6 @@ input.nosub {
     justify-content: space-between;
     align-items: center;
 }
-.side-two{
-
+.fa-backward{
+    color: white;
 }

@@ -1,12 +1,33 @@
 {% extends 'main.html' %}
-
-
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <img src="{{obj.image.url}}" alt="" srcset="" width="10%">
-        <p>are you sure you want delete "{{obj | upper}}"? </p>
-        <a href="{{request.META.HTTP_REFERER}}">Go back</a>
-        <input type="submit" value="Confirm">
-    </form>
+<main class="delete-item layout">
+    <div class="container">
+        <div class="layout__box">
+            <div class="layout__boxHeader">
+                <div class="layout__boxTitle">
+                    <a href="{{request.META.HTTP_REFERER}}">
+                        <i class="fa fa-backward text-decoration-none" > Back</i>
+                        
+                    </a>
+
+                </div>
+            </div>
+            <div class="layout__body">
+                <form class="form" action="" method="post">
+                    {% csrf_token %}
+                    <div class="form__group">
+                        <img src="{{obj.image.url}}" alt="" srcset="" width="50%">
+                        <br>
+                        <p>are you sure you want delete "{{obj | upper}}"? </p>
+                    </div>
+
+                    <div class="for__group">
+                        <input class="btn btn--main" type="submit" value="Confirm" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock content %}
