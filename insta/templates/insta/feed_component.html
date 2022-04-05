@@ -8,7 +8,7 @@
             alt="" class="rounded-circle z-depth-0" style="width: 5%;">
         {%endif%}
         &nbsp;<small><strong><a href="{% url 'profile' image.owner.id %}" class="text-decoration-none text-reset">
-                    {{image.owner.username}}</a></strong></small>
+                    {{image.owner.user.username}}</a></strong></small>
         <span>
             {% if request.user == image.owner.user %}
             <a href="{% url 'update-post' image.id %}"><i class="fas fa-edit"></i></a>
@@ -17,7 +17,8 @@
         </span>
     </div>
     <div class="card-body p-0">
-        <img src="{{image.image.url}}" alt="{{image.name}}" style="width: 100%;">
+        <a href="{% url 'post' image.id %}"><img src="{{image.image.url}}" alt="{{image.name}}"
+                style="width: 100%;"></a>
         <p class="card-title m-0"><strong>{{image.name}}</strong></p>
         <p class="card-text m-0"><small>{{image.caption}}</small></p>
     </div>
@@ -30,15 +31,26 @@
         {% else %}
         <button type="submit" class="fa fa-heart text-white">unlike</button>
         {% endif %}
-
-
     </form>
+    <div>
+        <h3>Comments</h3>
+        {% for comment in image.comment_set.all %}
+
+        {% if request.user == comment.user %}
+        <a href="{% url 'delete-comment' comment.id %}">Delete</a>
+        {% endif %}
+        <small>{{comment.user}} -- {{comment.created | timesince}}</small>
+        <p>{{comment.body}}</p>
+        <hr>
+        {% endfor %}
+    </div>
     <strong>{{image.liked.all.count}} Likes</strong>
     <div class="card-footer">
         {% if request.user.is_authenticated %}
         <div>
             <form action="" class="form-group" method="post" class="m-0">
                 {% csrf_token %}
+                <input type="hidden" name="image_id" value="{{image.id}}">
                 <input type="text" class="form-control m-0 p-0 nosub" name="body" id=""
                     placeholder=". .  . leave a comment">
             </form>

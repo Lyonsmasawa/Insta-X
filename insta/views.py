@@ -72,6 +72,16 @@ def home(request):
         images_count = images.count()
     else:
         images_count = -1
+    
+    if request.method == 'POST':
+        image_id = request.POST.get("image_id")
+        image = Image.objects.get(id = image_id)
+
+        comment = Comment.objects.create(
+            user = request.user,
+            image = image,
+            body = request.POST.get('body')
+        )
 
     context = {'images': images, 'images_count': images_count, 'users':users, }
     return render(request, 'insta/home.html', context)
@@ -80,7 +90,6 @@ def home(request):
 def post(request, pk):
     image = Image.objects.get(id=pk)
     comments = image.comment_set.all()
-    tags = image.tags.all()
 
     if request.method == 'POST':
         comment = Comment.objects.create(
@@ -90,7 +99,7 @@ def post(request, pk):
         )
         return redirect('post', pk=image.id)
     
-    context = {'image': image, 'comments':comments, 'tags':tags,}
+    context = {'image': image, 'comments':comments,}
     return render(request, 'insta/posts.html', context)
 
 def userProfile(request, pk):
@@ -251,3 +260,11 @@ def likePost(request):
         like.save()
 
     return redirect(request.META.get('HTTP_REFERER'))
+
+# def likedPosts(request):
+#     user = request.user
+
+#     images = Image.objects.filter(liked__icontains = user)
+
+#     context = {'images': images, }
+#     return render(request, 'insta/home.html', context)

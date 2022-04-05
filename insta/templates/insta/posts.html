@@ -2,12 +2,12 @@
 {% load bootstrap5 %}
 
 {% block content %}
-{% if request.user == image.owner %}
+{% if request.user == image.owner.user %}
 <a href="{% url 'update-post' image.id %}">edit Post</a>
 <a href="{% url 'delete-post' image.id %}">Delete Post</a>
 {% endif %}
 
-<img src="{{image.image.url}}" alt="" width="10%">
+<img src="{{image.image.url}}" alt="" style="width: 20%;">
 <h5>{{image.name}}</h5>
 <p>{{image.caption}}</p>
 <hr>
