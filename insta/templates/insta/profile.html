@@ -1,11 +1,17 @@
 {% extends 'main.html' %}
 {% load bootstrap5 %}
+{% load static %}
 
 {% block content %}
 <div class="container prof container">
     <div class="full-profile">
         <div class="container photo ">
+           
+            {% if profilr.profile_photo %}
             <img src="{{profile.profile_photo.url}}" alt="" class="rounded-circle img-thumbnail" style="width:70%">
+            {% else %}
+            <img src="{% static 'images/ic.jpg' %}" alt="" class="rounded-circle img-thumbnail" style="width:70%">
+            {%endif%}
         </div>
         <div>
             <div class="details">
