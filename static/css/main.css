@@ -63,11 +63,7 @@ a {
 }
 
 /*========== components ==========*/
-.container {
-    max-width: 120rem;
-    width: 90%;
-    margin: auto;
-}
+
 
 .btn {
     background-color: transparent;
@@ -1190,8 +1186,9 @@ input.nosub {
 }
 
 .prof {
-    display: flex;
-    flex-direction: column;
+   padding-left: 2rem;
+   padding-right: 2rem;
+    
 }
 .full-profile{
     display: grid;
