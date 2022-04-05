@@ -4,6 +4,7 @@ from random import choices
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Profile(models.Model):
@@ -11,7 +12,7 @@ class Profile(models.Model):
 
     # TODO: Define fields here
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_photo = models.ImageField()
+    profile_photo = CloudinaryField('image')
     bio = models.TextField(null=True, blank=True)
     followers = models.IntegerField(default=0)
     following = models.IntegerField(default=0)
@@ -49,7 +50,7 @@ class Image(models.Model):
 
     # TODO: Define fields here
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = CloudinaryField('image')
     name = models.CharField(max_length=20)
     caption = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
