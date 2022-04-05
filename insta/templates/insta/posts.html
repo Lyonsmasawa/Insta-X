@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div class="side-two">
+    <div class="side-two h-100">
         <div class="card-header d-flex viewx">
             <div>
                 {% if image.owner.profile_photo %}
@@ -43,16 +43,57 @@
                 {% else %}
                 <i class="fa fa-user-circle" style="width: 8%;"></i>
                 {%endif%}
-                &nbsp;<small><strong><a href="{% url 'profile' image.owner.id %}"
-                            class="text-decoration-none text-reset">
-                            {{image.owner.user.username}}</a></strong></small>
             </div>
         </div>
-        <span><strong>{{image.owner.user.username}}</strong></span>
-        <span class="card-text m-0"><small>{{image.caption}}</small></span>
+        <br>
+        <div class="container-fluid">
+            {% if image.owner.profile_photo %}
+            <img src=" {{ image.owner.profile_photo.url }}" class="rounded-circle img-thumbnail z-depth-0"
+                style="width: 8%;">
+            {% else %}
+            <i class="fa fa-user-circle" style="width: 8%;"></i>
+            {%endif%}
+            <span><strong><a href="{% url 'profile' image.owner.id %}"
+                class="text-decoration-none text-reset">
+                {{image.owner.user.username}}</a></strong></span>
 
-        <div class="card mx-auto mb-5" style="max-width: 60rem;">
+            <p class="card-text p-3">{{image.caption}}</p>
+            <hr>
             <br>
+
+        </div>
+
+        <div class="container">
+            <div class="">
+                <br>
+                <div class="container">
+
+                    <div>
+                        <strong>
+                            <p class="p-0 m-0">All Comments</p>
+                        </strong>
+                        <div class="container-fluid">
+
+                            {% for comment in comments %}
+                            <div class="commentx">
+                                <div>
+                                    <small><strong><a href="{% url 'profile' image.owner.id %}"
+                                                class="text-decoration-none text-reset">{{comment.user}}</a></strong>
+                                        <span class="tx"> {{comment.body}}</span>
+                                    </small>
+                                </div>
+                                <div>
+                                    {% if request.user == comment.user %}
+                                    <a href="{% url 'delete-comment' comment.id %}"><i class="fa fa-times"></i></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             <div class="container">
                 <div class="d-flex form-x">
                     <form action="{% url 'like' %}" method="post" class="like-f">
@@ -72,33 +113,9 @@
                     <p class="material-icons">&#xE87C;</p>
                     <p><span> </span> Liked by {{image.liked.all.count}} </p>
                 </div>
-                <div>
-                    <div class="m-0">
-                        <a href="{% url 'post' image.id %}">
-                            <p class="p-0 m-0">View Comments</p>
-                        </a>
-
-                        <div class="container">
-                            {% for comment in comments %}
-                            <div class="commentx">
-                                <div>
-                                    <small><strong>{{comment.user}}</strong>
-                                        <span class="tx"> {{comment.body}}</span>
-                                    </small>
-                                </div>
-                                <div>
-                                    {% if request.user == comment.user %}
-                                    <a href="{% url 'delete-comment' comment.id %}"><i class="fa fa-times"></i></a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                </div>
             </div>
             <div class="card-footer">
+                <br>
                 {% if request.user.is_authenticated %}
                 <div>
                     <form action="" class="form-group formlx" method="post" class="m-0">

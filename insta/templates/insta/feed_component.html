@@ -59,7 +59,8 @@
                     {% for comment in image.comment_set.all|slice:"0:2" %}
                     <div class="commentx">
                         <div>
-                            <small><strong>{{comment.user}}</strong>
+                            <small><a href="{% url 'profile' image.owner.id %}"
+                                        class="text-decoration-none text-reset">{{comment.user}}</a></strong>
                                 <span class="tx"> {{comment.body}}</span>
                             </small>
                         </div>

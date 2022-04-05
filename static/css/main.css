@@ -1292,6 +1292,8 @@ input.nosub {
 .all{
     display: grid;
     grid-template-columns: 3fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 10px;
 }
 .side{
     display: flex;
@@ -1301,4 +1303,7 @@ input.nosub {
 .xc{
     justify-content: space-between;
     align-items: center;
+}
+.side-two{
+
 }
