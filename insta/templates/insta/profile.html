@@ -3,67 +3,75 @@
 
 {% block content %}
 <div class="container prof">
-
-    <div class="row">
+    <div class="full-profile">
+        <div class="container photo ">
+            <img src="{{profile.profile_photo.url}}" alt="" class="rounded-circle img-thumbnail" style="width:70%">
+        </div>
         <div>
-            <h1>{{user.username}}</h1>
-            {{user.bio}}
-            <img src="{{profile.profile_photo.url}}" alt="" style="width: 10%;">
-
-            {%if profile.user.username == request.user.username%}
-            {% else%}
-
-
-            {% if isFollowing %}
-            {% if unfollow_form %}
-            <form action="{% url 'profile' profile.id %}" method="post" style="margin-top: 2rem;">
-                {%csrf_token%}
-                {% bootstrap_form unfollow_form%}
-                <input type="submit" class=" btn btn-info" name="unfollow" value="Unfollow"
-                    style="color: #003569 !important; padding: 6px 9px;">
-            </form>
-            {% endif %}
-            {% else %}
-            {% if follow_form %}
-            <form action="{% url 'profile' profile.id %}" method="post" style="margin-top: 2rem;">
-                {%csrf_token%}
-                {% bootstrap_form follow_form%}
-                <input type="submit" class=" btn btn-primary" name="follow" value="Follow"
-                    style="background-color: #003569 !important; padding: 6px 9px;">
-            </form>
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            <div class="d-flex" style="margin-top: 2rem;">
-                <div class='col-stats'>
-                    <strong style="font-size: 1.4rem;">{{posts_count}}</strong>
-                    <br />
-                    <p style="font-size: 1.2rem;">posts</p>
-                </div>
-                <div class='col-stats'>
-                    <strong style="font-size: 1.4rem;">{{profile.followers}}</strong>
-                    <br />
-                    <p style="font-size: 1.2rem;">followers</p>
-                </div>
-                <div class='col-stats'>
-                    <strong style="font-size: 1.4rem;">{{profile.following}}</strong>
-                    <br />
-                    <p style="font-size: 1.2rem;">following</p>
-                </div>
+            <div class="details">
+                <h1>{{profile.user.username}}</h1>
+                <a href="{% url 'update-user' %}"><button class="btn btn--pill">Edit Profile <span
+                            class="mr-3 fa fa-cog"></span></button></a>
             </div>
 
-            <a href="{% url 'update-user' %}">Edit Profile</a>
+            <div class="">
+                {%if profile.user.username == request.user.username%}
+                <div class="d-flex counts" style="margin-top: 2rem;">
+                    <div class="counts-det">
+                        <strong>{{posts_count}}</strong>
+                        <p>posts</p>
+                    </div>
+                    <div class="counts-det">
+                        <strong>{{profile.followers}}</strong>
+                        <p>followers</p>
+                    </div>
+                    <div class="counts-det">
+                        <strong>{{profile.following}}</strong>
+                        <p>following</p>
+                    </div>
+                </div>
+                {% else%}
 
-            <div><span>following</span> <span>followers</span></div>
+                <div>
+                    {% if isFollowing %}
+                    {% if unfollow_form %}
+                    <form action="{% url 'profile' profile.id %}" method="post" style="margin-top: 2rem;">
+                        {%csrf_token%}
+                        {% bootstrap_form unfollow_form%}
+                        <input type="submit" class=" btn btn-info" name="unfollow" value="Unfollow"
+                            style="color: #003569 !important; padding: 6px 9px;">
+                    </form>
+                    {% endif %}
+                    {% else %}
+                    {% if follow_form %}
+                    <form action="{% url 'profile' profile.id %}" method="post" style="margin-top: 2rem;">
+                        {%csrf_token%}
+                        {% bootstrap_form follow_form%}
+                        <input type="submit" class=" btn btn-primary" name="follow" value="Follow"
+                            style="background-color: #003569 !important; padding: 6px 9px;">
+                    </form>
+                    {% endif %}
+                    {% endif %}
+                    {% endif %}
+                </div>
+
+                <div class="">
+                    <h4>{{user.bio}}</h4>
+                </div>
+
+            </div>
+
         </div>
+    </div>
+
+    <div class="row">
         {% for image in images %}
-        <div class="col-md-3 h-100">
+        <div class="col-md-4 h-100">
             <div class="mx-auto mb-5" style="max-width: 40rem;">
                 <img src="{{image.image.url}}" alt="{{image.name}}" style="width: 100%;">
             </div>
         </div>
         {% endfor %}
-
     </div>
 </div>
 {% endblock content %}
