@@ -1298,3 +1298,7 @@ input.nosub {
     align-items: center;
     flex-direction: column;
 }
+.xc{
+    justify-content: space-between;
+    align-items: center;
+}
