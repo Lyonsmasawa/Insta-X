@@ -1,0 +1,2 @@
+Hello {{name}}
+Welcome to Instax, where its all about posts and likes
