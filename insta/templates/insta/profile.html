@@ -17,8 +17,10 @@
         <div>
             <div class="details">
                 <h1>{{profile.user.username}}</h1>
+                {%if profile.user.username == request.user.username%}
                 <a href="{% url 'update-user' %}"><button class="btn btn--pill">Edit Profile <span
                             class="mr-3 fa fa-cog"></span></button></a>
+                {% endif %}
             </div>
 
             <div class="">

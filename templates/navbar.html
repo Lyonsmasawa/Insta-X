@@ -43,15 +43,14 @@
                 <li class="nav-item dropdown" style="max-width: 5rem;">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        
-                            {% if request.user.profile.profile_photo %}
-                            <img src=" {{ request.user.profile.profile_photo.url}}"
-                                class="rounded-circle z-depth-0" style="max-width:100%;
+
+                        {% if request.user.profile.profile_photo %}
+                        <img src=" {{ request.user.profile.profile_photo.url}}" class="rounded-circle z-depth-0" style="max-width:100%;
                             max-height:100%;">
-                            {% else %}
-                            <i class="fa fa-user-circle"></i>
-                            {%endif%}
-                        
+                        {% else %}
+                        <i class="fa fa-user-circle"></i>
+                        {%endif%}
+
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if request.user.is_authenticated %}
