@@ -20,8 +20,8 @@
         <div class="col-md-3">
             <br>
             <div class="card-header">
-                {% if request.user.profile_photo %}
-                <img src=" {{ request.user.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
+                {% if request.user.profile.profile_photo %}
+                <img src=" {{ request.user.profile.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
                     style="width: 15%;">
                 {% else %}
                 <i class="fa fa-user-circle"></i>
@@ -37,8 +37,8 @@
                 {% else %}
 
                 <p class=" text-decoration-none list-style-none text-reset card-header">
-                    {% if user.profile_photo %}
-                    <img src=" {{ user.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
+                    {% if user.profile.profile_photo %}
+                    <img src=" {{ user.profile.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
                         style="width: 10%;">
                     {% else %}
                     <i class="fa fa-user-circle"></i>
