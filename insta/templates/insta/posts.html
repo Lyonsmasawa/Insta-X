@@ -2,41 +2,113 @@
 {% load bootstrap5 %}
 
 {% block content %}
-{% if request.user == image.owner.user %}
-<a href="{% url 'update-post' image.id %}">edit Post</a>
-<a href="{% url 'delete-post' image.id %}">Delete Post</a>
-{% endif %}
+<div class="all">
+    <div class="side">
+        <div class="card-header d-flex viewx">
+            <div>
+                {% if image.owner.profile_photo %}
+                <img src=" {{ image.owner.profile_photo.url }}" class="rounded-circle img-thumbnail z-depth-0"
+                    style="width: 8%;">
+                {% else %}
+                <i class="fa fa-user-circle" style="width: 8%;"></i>
+                {%endif%}
+                &nbsp;<small><strong><a href="{% url 'profile' image.owner.id %}"
+                            class="text-decoration-none text-reset">
+                            {{image.owner.user.username}}</a></strong></small>
+            </div>
+            <div class="d-flex opt">
+                {% if request.user == image.owner.user %}
+                <span><a href="{% url 'update-post' image.id %}"><i class="fas fa-edit"></i></a></span>
+                <br>
+                <span>
+                    <a href="{% url 'delete-post' image.id %}"><i class="fa fa-times"></i></a>
+                </span>
+                {% endif %}
+            </div>
+        </div>
 
-<img src="{{image.image.url}}" alt="" style="width: 20%;">
-<h5>{{image.name}}</h5>
-<p>{{image.caption}}</p>
-<hr>
-{% for tag in tags %}
-<p>{{tag}}</p>
-{% endfor %}
-<hr>
-<div>
-    <h3>Comments</h3>
-    {% for comment in comments %}
-    
-    {% if request.user == comment.user %}
-        <a href="{% url 'delete-comment' comment.id %}">Delete</a>
-    {% endif %}
-    <small>{{comment.user}} -- {{comment.created | timesince}}</small>
-    <p>{{comment.body}}</p>
-    <hr>
-    {% endfor %}
-
-
-    {% if request.user.is_authenticated %}
-    <div>
-        <form action="" method="post">
-            {% csrf_token %}
-            <input type="text" name="body" id="" placeholder="leave a comment">
-        </form>
+        <div class="card-body p-0">
+            <a href="{% url 'post' image.id %}"><img src="{{image.image.url}}" alt="{{image.name}}"
+                    style="width: 100%;"></a>
+        </div>
     </div>
-    {% endif %}
+    <div class="side-two">
+        <div class="card-header d-flex viewx">
+            <div>
+                {% if image.owner.profile_photo %}
+                <img src=" {{ image.owner.profile_photo.url }}" class="rounded-circle img-thumbnail z-depth-0"
+                    style="width: 8%;">
+                {% else %}
+                <i class="fa fa-user-circle" style="width: 8%;"></i>
+                {%endif%}
+                &nbsp;<small><strong><a href="{% url 'profile' image.owner.id %}"
+                            class="text-decoration-none text-reset">
+                            {{image.owner.user.username}}</a></strong></small>
+            </div>
+        </div>
+        <span><strong>{{image.owner.user.username}}</strong></span>
+        <span class="card-text m-0"><small>{{image.caption}}</small></span>
 
+        <div class="card mx-auto mb-5" style="max-width: 60rem;">
+            <br>
+            <div class="container">
+                <div class="d-flex form-x">
+                    <form action="{% url 'like' %}" method="post" class="like-f">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{image.id}}" name="image_id">
+
+                        {% if user not in image.liked.all %}
+                        <button type="submit" class="btn-transparent far fa-heart icon-x"></button>
+                        {% else %}
+                        <button type="submit" class="btn-transparent fa fa-heart icon-x text-red"></button>
+                        {% endif %}
+                    </form>
+                    <a href="{% url 'post' image.id %}"> <i class="far fa-message icon-x"></i></a>
+                    <a href="{% url 'post' image.id %}"> <i class="far fa-paper-plane icon-x"></i></a>
+                </div>
+                <div class="likex">
+                    <p class="material-icons">&#xE87C;</p>
+                    <p><span> </span> Liked by {{image.liked.all.count}} </p>
+                </div>
+                <div>
+                    <div class="m-0">
+                        <a href="{% url 'post' image.id %}">
+                            <p class="p-0 m-0">View Comments</p>
+                        </a>
+
+                        <div class="container">
+                            {% for comment in comments %}
+                            <div class="commentx">
+                                <div>
+                                    <small><strong>{{comment.user}}</strong>
+                                        <span class="tx"> {{comment.body}}</span>
+                                    </small>
+                                </div>
+                                <div>
+                                    {% if request.user == comment.user %}
+                                    <a href="{% url 'delete-comment' comment.id %}"><i class="fa fa-times"></i></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+                {% if request.user.is_authenticated %}
+                <div>
+                    <form action="" class="form-group formlx" method="post" class="m-0">
+                        {% csrf_token %}
+                        <input type="hidden" name="image_id" value="{{image.id}}">
+                        <span class="material-icons">&#xE87C;</span>
+                        <input type="text" class="form-control trial" name="body" id="" placeholder="Add a comment">
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock content %}

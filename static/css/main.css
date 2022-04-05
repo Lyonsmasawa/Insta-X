@@ -1289,3 +1289,7 @@ input.nosub {
 .tx{
     font-weight: 200;
 }
+.all{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
