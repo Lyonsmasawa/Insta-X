@@ -3,14 +3,14 @@
 ## Description
 This is an instagram clone where the user can perform functions same as the ones on the real Instagram, e.g. Post, Like, Follow e.t.c.
 
-### View Image
-<img src="postview.png">
-
-## Home Image
-<img src="home.png">
-
 ### Profile page
 <img src="profile.png">
+
+## Home Page
+<img src="home.png">
+
+### View Post
+<img src="postview.png">
 
 ### Login view
 <img src="login.png"> 
