@@ -44,7 +44,7 @@ source virtual/bin/activate
 ```
 - Install the required packages from the requirements.txt
 
-```
+``` 
 pip install -r requirements.txt
 ```
 
