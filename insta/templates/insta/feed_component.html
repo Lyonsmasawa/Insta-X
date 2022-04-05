@@ -34,17 +34,17 @@
                 <input type="hidden" value="{{image.id}}" name="image_id">
 
                 {% if user not in image.liked.all %}
-                <button type="submit" class="btn-transparent fa-solid fa-heart "></button>
+                <button type="submit" class="btn-transparent far fa-heart icon-x"></button>
                 {% else %}
-                <button type="submit" class="btn-transparent fa fa-heart text-red"></button>
+                <button type="submit" class="btn-transparent fa fa-heart icon-x text-red"></button>
                 {% endif %}
             </form>
-            <a href=""><span class="material-icons icon-x">&#xe0ca;</span></a>
-            <a> <i class="fa-solid fa-paper-plane icon-x"></i></a>
+            <a href=""> <i class="far fa-message icon-x"></i></a>
+            <a> <i class="far fa-paper-plane icon-x"></i></a>
         </div>
         <div class="likex">
             <p class="material-icons">&#xE87C;</p>
-            <p> Liked by {{image.liked.all.count}} </p>
+            <p><span> </span> Liked by {{image.liked.all.count}} </p>
         </div>
         <div>
             <span><strong>{{image.owner.user.username}}</strong></span>
@@ -54,21 +54,21 @@
                 <a href="{% url 'post' image.id %}">
                     <p class="p-0 m-0">View Comments</p>
                 </a>
-            </div>
 
-            <div class="container">
-                {% for comment in image.comment_set.all %}
-                <div class="commentx">
-                    <div>
-                        <small><strong>{{comment.user}}</strong> {{comment.body}}</small>
+                <div class="container">
+                    {% for comment in image.comment_set.all %}
+                    <div class="commentx">
+                        <div>
+                            <small><strong>{{comment.user}}</strong> {{comment.body}}</small>
+                        </div>
+                        <div>
+                            {% if request.user == comment.user %}
+                            <a href="{% url 'delete-comment' comment.id %}"><i class="fa fa-times"></i></a>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div>
-                        {% if request.user == comment.user %}
-                        <a href="{% url 'delete-comment' comment.id %}"><i class="fa fa-times"></i></a>
-                        {% endif %}
-                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
 
         </div>
@@ -76,11 +76,11 @@
     <div class="card-footer">
         {% if request.user.is_authenticated %}
         <div>
-            <form action="" class="form-group" method="post" class="m-0">
+            <form action="" class="form-group formlx" method="post" class="m-0">
                 {% csrf_token %}
                 <input type="hidden" name="image_id" value="{{image.id}}">
                 <span class="material-icons">&#xE87C;</span>
-                <input type="text" class="form-control m-0 p-0" name="body" id="" placeholder=". .  . leave a comment">
+                <input type="text" class="form-control m-0 p-0 trial" name="body" id="" placeholder="Add a comment">
             </form>
         </div>
         {% endif %}

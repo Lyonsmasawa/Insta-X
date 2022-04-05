@@ -1270,3 +1270,16 @@ input.nosub {
     align-items: center;
     justify-content: space-between;
 }
+.formlx{
+    display: flex;
+    align-items: center;
+}
+.card-footer{
+    background-color: white;
+}
+.trial{
+    border: none;
+    background-color: white;
+    color: black;
+    font-size: 1.2rem;
+}
