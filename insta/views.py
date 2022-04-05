@@ -63,8 +63,12 @@ def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     images = Image.objects.filter(
        Q(name__icontains = q) |
-       Q(owner__user__username__icontains = q)
+       Q(owner__user__username__icontains = q) 
     )
+    search_user = Profile.objects.filter(
+       Q(user__username__icontains = q) 
+    )
+
 
     users = User.objects.all()
 
@@ -83,7 +87,25 @@ def home(request):
             body = request.POST.get('body')
         )
 
-    context = {'images': images, 'images_count': images_count, 'users':users, }
+    image_list = []
+
+    user = request.user
+    get_user = Profile.objects.get(user = user)
+    user_images = get_user.image_set.all()
+
+    for image in user_images:
+        image_list.append(image.id)
+
+    following = Follow.objects.filter(follow = get_user)
+    for follow_each in following:
+        user_followed = follow_each.followed
+        follow_images = user_followed.image_set.all()
+    
+    for image in follow_images:
+        image_list.append(image.id)
+
+    images = Image.objects.filter(pk__in = image_list).order_by('-updated')
+    context = {'user_images':user_images,'follow_images':follow_images , 'images': images, 'search_user':search_user, 'images_count': images_count, 'users':users, }
     return render(request, 'insta/home.html', context)
 
 @login_required(login_url='login')
