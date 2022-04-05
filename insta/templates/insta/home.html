@@ -19,8 +19,8 @@
 
         <div class="col-md-3">
             <br>
-            {% if user.profile.profile_photo %}
-            <img src=" {{ user.pofile.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
+            {% if request.user.profile_photo %}
+            <img src=" {{ request.user.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
                 style="width: 10%;">
             {% else %}
             <i class="fa fa-user-circle"></i>
@@ -30,9 +30,21 @@
 
             <div class="card">
                 {% for user in users %}
-                <li class="text-reset"><a href="{% url 'profile' user.id %}">{{user.username}}</a></li>
+                {% if user == request.user%}
+                {% else %}
+
+                <li class="text-reset">
+                    {% if user.user.profile_photo %}
+                    <img src=" {{ request.user.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
+                        style="width: 10%;">
+                    {% else %}
+                    <i class="fa fa-user-circle"></i>
+                    {%endif%}
+                    <span><a href="{% url 'profile' user.id %}">{{user.username}}</a></li></span>
+                {% endif %}
                 {% endfor %}
             </div>
+
 
 
         </div>
