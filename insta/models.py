@@ -8,7 +8,7 @@ class Profile(models.Model):
 
     # TODO: Define fields here
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_photo = CloudinaryField('image')
+    profile_photo = CloudinaryField('image', blank=True)
     bio = models.TextField(null=True, blank=True)
     followers = models.IntegerField(default=0)
     following = models.IntegerField(default=0)
