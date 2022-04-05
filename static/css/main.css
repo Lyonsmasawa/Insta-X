@@ -1630,3 +1630,8 @@ input.nosub {
 .fm{
     text-align: left;
 }
+.viewx{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
