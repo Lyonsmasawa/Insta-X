@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
+from .email import send_welcome_email
 
 # Create your views here.
 def loginPage(request):
@@ -50,6 +51,9 @@ def registerPage(request):
             user.username = user.username.lower()
             user.save()
             Profile.objects.create(user=user,)
+            email = user.email
+            name = user.username
+            send_welcome_email(name, email)
             login(request, user)
             return redirect('home')
         else:
@@ -286,10 +290,3 @@ def likePost(request):
 
     return redirect(request.META.get('HTTP_REFERER'))
 
-# def likedPosts(request):
-#     user = request.user
-
-#     images = Image.objects.filter(liked__icontains = user)
-
-#     context = {'images': images, }
-#     return render(request, 'insta/home.html', context)
