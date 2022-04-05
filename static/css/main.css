@@ -1141,7 +1141,6 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    /* justify-content: space-between; */
     align-content: center;
 }
 
@@ -1333,10 +1332,7 @@ footer {
 footer .container {
     display: flex;
     justify-content: space-between;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    margin-top: 0;
+    font-size: 1rem;
     flex-wrap: wrap;
 }
 
@@ -1351,7 +1347,7 @@ footer .container {
 }
 
 .footer-nav ul li a {
-    color: #003569;
+    color: black;
 }
 
 .copyright-notice {
@@ -1630,4 +1626,7 @@ input.nosub {
 .full_login{
     display: flex;
     flex-direction: column;
+}
+.fm{
+    text-align: left;
 }

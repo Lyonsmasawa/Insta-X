@@ -8,16 +8,16 @@
 <div class="full_login" id="wrapper">
     <div class="container">
         <div class="form-data">
-            <form action="" method="post">
+            <form action="" method="post" class="fm">
                 {% csrf_token %}
                 <div class="logo">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png"
                         alt="">
                 </div>
-                <label for="">Username:</label>
+                <label for="" class="fm">Username:</label>
                 <input type="text" name="username" id="" placeholder="Enter Username" required>
 
-                <label for="">Password:</label>
+                <label for="" class="fm">Password:</label>
                 <input type="password" name="password" id="" placeholder="Enter password" required>
 
                 <input type="submit" value="Login">
@@ -76,7 +76,7 @@
                     </li>
                 </ul>
             </nav>
-            <div class="copyright-notice">
+            <div>
                 &copy; 2022 Instagram
             </div>
         </div>
