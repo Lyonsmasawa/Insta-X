@@ -108,7 +108,7 @@ def home(request):
         )
 
 
-    context = {'user_images':user_images,'follow_images':follow_images , 'images': images, 'images_count': images_count, 'users':users, }
+    context = {'images': images, 'images_count': images_count, 'users':users, }
     return render(request, 'insta/home.html', context)
 
 @login_required(login_url='login')
