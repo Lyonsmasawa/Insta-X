@@ -1,6 +1,5 @@
 {% extends 'main.html' %}
-
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 {% if page == 'login' %}
@@ -18,14 +17,25 @@
     <a href="{% url 'register' %}">Sign Up</a>
 
 {% else %}
-
-<form action="" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="SignUp">
-</form>
-<p>Already a member?</p>
-<a href="{% url 'login' %}">Login</a>
+<div id="wrapper" id="content" style="padding-top: 0 !important;">
+    <div class="register">
+        <div class="form-data form-data-reg">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="logo-reg">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="">
+                </div>
+                <h4 class="intro">Sign up to see photos and videos from your friends.</h4>
+                {{ form|crispy }}
+                <input class="form-btn" type="submit" value="SignUp">
+            </form>
+            <div class="sign-up">
+                <p>Already a member?</p>
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endif %}
 
 {% endblock content %}
