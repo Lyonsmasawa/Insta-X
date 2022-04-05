@@ -1235,8 +1235,33 @@ input.nosub {
 }
 
 .fa-heart{
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 .fa-solid{
     background: transparent;
+}
+.icon-x{
+    font-size: 2.2rem;
+}
+.viewx{
+    align-items: center;
+    justify-content: center;
+}
+
+.opt{
+    gap: 1rem;
+}
+.like-f{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.form-x{
+    align-items: center;
+    padding-top: 1%;
+    gap: 1rem;
+}
+.likex{
+    display: flex;
+    align-items: center;
+    padding-top: .2%;
 }
