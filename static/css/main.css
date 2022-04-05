@@ -1108,6 +1108,309 @@ a {
     background: transparent;
 }
 
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+#content img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+#content body {
+    background-color: #fafafa;
+}
+
+#wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* justify-content: space-between; */
+    align-content: center;
+}
+
+#content .container {
+    width: 100%;
+    max-width: 93.5rem;
+    margin: 3rem auto 0;
+}
+
+#wrapper>.container {
+    display: flex;
+    padding: 0 8rem;
+}
+
+#wrapper .register {
+    display: flex;
+    justify-content: center;
+    padding: 0 auto;
+}
+
+.demo {
+    height: 61.8rem;
+    background: url('../../static/images/insta.jpg') center no-repeat;
+    flex: 1;    
+    margin-right: -100px;
+}
+
+.form-data {
+    width: 100%;
+    max-width: 35rem;
+    margin-top: 3rem;
+    margin-right: 10rem;
+}
+
+.form-data-reg {
+    max-width: 58rem !important;
+}
+
+.form-data-prof {
+    max-width: 50rem !important;
+}
+
+.form-data form {
+    background-color: #fff;
+    border: 2px solid #eee;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    text-align: center;
+}
+
+.logo img {
+    width: 17.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.logo-reg img {
+    width: 10rem;
+    margin-bottom: 1rem;
+}
+
+.intro {
+    color: #8e8e8e;
+    color: rgba(var(--f52, 142, 142, 142), 1);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0 40px 10px;
+    text-align: center;
+
+}
+
+/* .form-data label{
+    display: none;
+} */
+
+.form-group .help-block {
+    font-size: 1.2rem;
+}
+
+.form-data form input {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border: 2px solid #eee;
+    border-radius: 0.4rem;
+}
+
+.form-btn {
+    margin: 1rem 0 1.5rem;
+    height: 3rem;
+    background-color: #3897f0;
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.has-separator {
+    font-size: 1.3rem;
+    color: #999999;
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.has-separator::before,
+.has-separator::after {
+    content: "";
+    position: absolute;
+    background-color: #eee;
+    width: 40%;
+    height: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.has-separator.has-separator::before {
+    left: 0;
+}
+
+.has-separator.has-separator::after {
+    right: 0;
+}
+
+.facebook-login {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #385185;
+    margin-bottom: 2.5rem;
+}
+
+.facebook-login i {
+    font-size: 2rem;
+    margin-right: 0.7rem;
+}
+
+.password-reset {
+    font-size: 1.2rem;
+    color: #003569
+}
+
+.sign-up {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #262626;
+    padding: 1rem 0;
+    background-color: #fff;
+    border: 2px solid #eee;
+    margin: 1rem 0;
+}
+
+.sign-up a {
+    color: #3897f0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.get-the-app {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.get-the-app span {
+    display: block;
+    margin: 2rem 0;
+    color: #262626;
+}
+
+.badges {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.badges img {
+    max-width: 14rem;
+    cursor: pointer;
+}
+
+.badges img:first-child {
+    margin-right: 1rem;
+}
+
+footer {
+    padding: 5rem 0;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-top: 0;
+    flex-wrap: wrap;
+}
+
+.footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.footer-nav ul li {
+    margin-right: 1.6rem;
+}
+
+.footer-nav ul li a {
+    color: #003569;
+}
+
+.copyright-notice {
+    color: #999999;
+}
+
+@media (max-width: 1024px) {
+    .phone-app-demo {
+        display: none;
+    }
+
+    .form-data {
+        margin: 0 auto;
+    }
+
+    #wrapper {
+        padding-top: 2rem;
+    }
+
+    #wrapper>.container {
+        padding: 0;
+    }
+
+    footer .container {
+        padding: 0 2rem;
+        justify-content: center;
+    }
+
+    .footer-nav ul {
+        justify-content: center;
+    }
+
+    .footer-nav ul li {
+        margin-bottom: 1rem;
+    }
+}
+
+@media(max-width: 450px) {
+    #wrapper {
+        padding-top: 0;
+    }
+
+    .form-data form {
+        background-color: transparent;
+        border: none;
+        padding: 0 2rem;
+    }
+
+    .sign-up {
+        background-color: transparent;
+        border: none;
+        margin: 4rem 0;
+    }
+
+    footer {
+        padding-bottom: 2rem;
+    }
+}
+
 .room__message>form>input {
     resize: none;
     background-color: var(--color-dark-light);
@@ -1229,81 +1532,102 @@ input.nosub {
     color: red;
 }
 
-.btn-transparent{
+.btn-transparent {
     background-color: transparent;
     border: none;
 }
 
-.fa-heart{
+.fa-heart {
     font-size: 2rem;
 }
-.fa-solid{
+
+.fa-solid {
     background: transparent;
 }
-.icon-x{
+
+.icon-x {
     font-size: 2.2rem;
 }
-.viewx{
+
+.viewx {
     align-items: center;
     justify-content: center;
 }
 
-.opt{
+.opt {
     gap: 1rem;
 }
-.like-f{
+
+.like-f {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
-.form-x{
+
+.form-x {
     align-items: center;
     padding-top: 1%;
     gap: 1rem;
 }
-.likex{
+
+.likex {
     display: flex;
     align-items: center;
     padding-top: .2%;
 }
-.commentx{
+
+.commentx {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.formlx{
+
+.formlx {
     display: flex;
     align-items: center;
 }
-.card-footer{
+
+.card-footer {
     background-color: white;
 }
-.trial{
+
+.trial {
     border: none;
     background-color: white;
     color: black;
     font-size: 1.2rem;
 }
+
 .trial:focus {
     border: none;
 }
-.tx{
+
+.tx {
     font-weight: 200;
 }
-.all{
+
+.all {
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-auto-rows: 1fr;
     gap: 10px;
 }
-.side{
+
+.side {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-.xc{
+
+.xc {
     justify-content: space-between;
     align-items: center;
 }
-.fa-backward{
+
+.fa-backward {
     color: white;
+}
+
+.full_login{
+    display: flex;
+    flex-direction: column;
 }
