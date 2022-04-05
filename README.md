@@ -4,22 +4,20 @@
 This is an instagram clone where the user can perform functions same as the ones on the real Instagram, e.g. Post, Like, Follow e.t.c.
 
 ### Profile page
-<img src="peek.png">
+<img src="profile.png">
 
-## Home Image
-<img src="peek2.png">
+## Home Page
+<img src="home.png">
 
-### View Image
-<img src="peek3.png">
+### View Post
+<img src="postview.png">
 
 ### Login view
 <img src="login.png"> 
 
-### Update view
-<img src="login.png"> 
+### Another user profilr view
+<img src="another.png"> 
 
-### Add Image
-<img src="peek1.png">
 
 ## Setup Requirements
 
