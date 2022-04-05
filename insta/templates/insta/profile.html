@@ -65,17 +65,20 @@
         </div>
     </div>
 
-    <div class="row images-list container justify-content-centre">
-        <br>
-        <br>
-        <hr>
-        {% for image in images %}
-        <div class="col-md-4 h-100">
-            <div class="mx-auto mb-5" style="max-width: 40rem;">
-                <a href="{% url 'post' image.id %}"><img src="{{image.image.url}}" alt="{{image.name}}" style="width: 100%;"></a>
+    <div class="container">
+        <div class="row images-list container justify-content-centre">
+            <br>
+            <br>
+            <hr>
+            {% for image in images %}
+            <div class="col-md-4 h-100">
+                <div class="" style="max-width: 40rem;">
+                    <a href="{% url 'post' image.id %}"><img src="{{image.image.url}}" alt="{{image.name}}"
+                            style="width: 100%;"></a>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 {% endblock content %}

@@ -1195,8 +1195,8 @@ input.nosub {
     gap: 20px;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
-    background-color: aquamarine;
 }
+
 .photo{
     display: flex;
     flex-direction: column;
