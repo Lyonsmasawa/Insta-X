@@ -26,7 +26,7 @@ This is an instagram clone where the user can perform functions same as the ones
 - Django 
 - Python 3.9
 - SQLlite
-
+ 
 ## Setup Installation
 
 - Clone this repository.
