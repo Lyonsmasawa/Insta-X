@@ -83,10 +83,10 @@ def home(request):
         following = Follow.objects.filter(follow = get_user)
         for follow_each in following:
             user_followed = follow_each.followed
-            follow_images = user_followed.image_set.all()
-    
-        for image in follow_images:
-            image_list.append(image.id)
+            if user_followed != None:
+                follow_images = user_followed.image_set.all()
+                for image in follow_images:
+                    image_list.append(image.id)
 
         images = Image.objects.filter(pk__in = image_list).order_by('-updated')
      
