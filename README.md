@@ -15,7 +15,7 @@ This is an instagram clone where the user can perform functions same as the ones
 ### Login view
 <img src="login.png"> 
 
-### Another user profilr view
+### Another user profile view
 <img src="another.png"> 
 
 
