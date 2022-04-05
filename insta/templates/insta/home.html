@@ -19,28 +19,32 @@
 
         <div class="col-md-3">
             <br>
-            {% if request.user.profile_photo %}
-            <img src=" {{ request.user.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
-                style="width: 10%;">
-            {% else %}
-            <i class="fa fa-user-circle"></i>
-            {%endif%}
-
-            <p>suggestions for you</p>
-
+            <div class="card-header">
+                {% if request.user.profile_photo %}
+                <img src=" {{ request.user.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
+                    style="width: 15%;">
+                {% else %}
+                <i class="fa fa-user-circle"></i>
+                {%endif%}
+                <span>{{request.user.username}}</span>
+            </div>
+            <hr>
+            <p>Suggestions for you</p>
+            <hr>
             <div class="card">
                 {% for user in users %}
                 {% if user == request.user%}
                 {% else %}
 
-                <li class="text-reset">
-                    {% if user.user.profile_photo %}
-                    <img src=" {{ request.user.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
+                <p class=" text-decoration-none list-style-none text-reset card-header">
+                    {% if user.profile_photo %}
+                    <img src=" {{ user.profile_photo.url }}" class="rounded-circle z-depth-0 img-thumbnail"
                         style="width: 10%;">
                     {% else %}
                     <i class="fa fa-user-circle"></i>
                     {%endif%}
-                    <span><a href="{% url 'profile' user.id %}">{{user.username}}</a></li></span>
+                    <span><a href="{% url 'profile' user.id %}">{{user.username}}</a></span>
+                </p>
                 {% endif %}
                 {% endfor %}
             </div>
