@@ -44,8 +44,8 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span>
-                            {% if request.user.profile.profile_photo %}
-                            <img src=" {{ request.user.pofile.profile_photo.url }}"
+                            {% if request.user.profile_photo %}
+                            <img src=" {{ request.user.profile_photo.url }}"
                                 class="rounded-circle z-depth-0 img-thumbnail" style="width: 100%;">
                             {% else %}
                             <i class="fa fa-user-circle"></i>
