@@ -2,7 +2,7 @@
 {% load bootstrap5 %}
 
 {% block content %}
-<div class="container prof">
+<div class="container prof container">
     <div class="full-profile">
         <div class="container photo ">
             <img src="{{profile.profile_photo.url}}" alt="" class="rounded-circle img-thumbnail" style="width:70%">
@@ -64,14 +64,15 @@
 
         </div>
     </div>
-    <br>
-    <br>
-    <hr>
-    <div class="row">
+
+    <div class="row images-list container justify-content-centre">
+        <br>
+        <br>
+        <hr>
         {% for image in images %}
         <div class="col-md-4 h-100">
             <div class="mx-auto mb-5" style="max-width: 40rem;">
-                <img src="{{image.image.url}}" alt="{{image.name}}" style="width: 100%;">
+                <a href="{% url 'post' image.id %}"><img src="{{image.image.url}}" alt="{{image.name}}" style="width: 100%;"></a>
             </div>
         </div>
         {% endfor %}

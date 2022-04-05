@@ -1188,7 +1188,6 @@ input.nosub {
 .prof {
    padding-left: 2rem;
    padding-right: 2rem;
-    
 }
 .full-profile{
     display: grid;
@@ -1196,6 +1195,7 @@ input.nosub {
     gap: 20px;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
+    background-color: aquamarine;
 }
 .photo{
     display: flex;
@@ -1209,9 +1209,13 @@ input.nosub {
 }
 .counts{
     gap:20px;
-
 }
 .counts-det{
     display: flex;
     gap: 1rem;
+}
+.images-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
