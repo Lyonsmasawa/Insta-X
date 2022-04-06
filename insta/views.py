@@ -51,10 +51,13 @@ def registerPage(request):
             user.username = user.username.lower()
             user.save()
             Profile.objects.create(user=user,)
-            email = user.email
-            name = user.username
-            send_welcome_email(name, email)
-            login(request, user)
+            try:
+                email = user.email
+                name = user.username
+                send_welcome_email(name, email)
+                login(request, user)
+            except:
+                login(request, user)
             return redirect('home')
         else:
             messages.error(request, 'please try again')
