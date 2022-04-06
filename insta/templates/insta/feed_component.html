@@ -1,3 +1,4 @@
+{% if images %}
 {% for image in images %}
 <div class="card mx-auto mb-5" style="max-width: 60rem;">
     <div class="card-header d-flex viewx">
@@ -6,10 +7,10 @@
             <img src=" {{ image.owner.profile_photo.url }}" class="rounded-circle img-thumbnail z-depth-0"
                 style="width: 8%;">
             {% else %}
-            <i class="fa fa-user-circle p-3"  class="rounded-circle img-thumbnail z-depth-0"
-            style="width: 8%;"></i>&nbsp;
+            <i class="fa fa-user-circle p-3" class="rounded-circle img-thumbnail z-depth-0"
+                style="width: 8%;"></i>&nbsp;
             {%endif%}
-           <small><strong><a href="{% url 'profile' image.owner.id %}" class="text-decoration-none text-reset"> 
+            <small><strong><a href="{% url 'profile' image.owner.id %}" class="text-decoration-none text-reset">
                         {{image.owner.user.username}}</a></strong></small>
         </div>
         <div class="d-flex opt">
@@ -61,7 +62,7 @@
                     <div class="commentx">
                         <div>
                             <small><a href="{% url 'profile' image.owner.id %}"
-                                        class="text-decoration-none text-reset"><strong>{{comment.user}}</strong></a></strong>
+                                    class="text-decoration-none text-reset"><strong>{{comment.user}}</strong></a></strong>
                                 <span class="tx"> {{comment.body}}</span>
                             </small>
                         </div>
@@ -91,3 +92,7 @@
     </div>
 </div>
 {% endfor %}
+{% else %}
+<p>create a profile for better user experience then follow other users to see their posts</p>
+{% endif %}
+    
