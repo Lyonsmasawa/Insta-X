@@ -1,4 +1,4 @@
-# GalleryX
+# InstaX
 
 ## Description
 This is an instagram clone where the user can perform functions same as the ones on the real Instagram, e.g. Post, Like, Follow e.t.c.
