@@ -1167,7 +1167,10 @@ a {
     flex: 1;    
     margin-right: -100px;
 }
-
+.demox {
+    height: 61.8rem;
+    background: url('../../static/images/dmx.jpg') center no-repeat;   
+}
 .form-data {
     width: 100%;
     max-width: 35rem;
