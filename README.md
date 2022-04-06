@@ -3,6 +3,9 @@
 ## Description
 This is an instagram clone where the user can perform functions same as the ones on the real Instagram, e.g. Post, Like, Follow e.t.c.
 
+### New user landing page
+<img src="newuser.png">
+
 ### Profile page
 <img src="profile.png">
 
