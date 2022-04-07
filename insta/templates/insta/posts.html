@@ -96,7 +96,7 @@
             </div>
             <div class="container">
                 <div class="d-flex form-x">
-                    <form action="{% url 'like' %}" method="post" class="like-f">
+                    <form action="{% url 'like' %}" method="post" class="like-f" id="like-form">
                         {% csrf_token %}
                         <input type="hidden" value="{{image.id}}" name="image_id">
 
@@ -118,11 +118,11 @@
                 <br>
                 {% if request.user.is_authenticated %}
                 <div>
-                    <form action="" class="form-group formlx" method="post" class="m-0">
+                    <form action="" class="form-group formlx" method="post" class="m-0" id="comment-form">
                         {% csrf_token %}
-                        <input type="hidden" name="image_id" value="{{image.id}}">
+                        <input type="hidden" name="image_id" value="{{image.id}}" id="image_id">
                         <span class="material-icons">&#xE87C;</span>
-                        <input type="text" class="form-control trial" name="body" id="" placeholder="Add a comment">
+                        <input type="text" class="form-control trial" name="body" id="body_id" placeholder="Add a comment">
                     </form>
                 </div>
                 {% endif %}
@@ -130,4 +130,30 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script>
+    $(document).on('submit','#comment-form', function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url: "{% url 'post' image.id %}",
+            data:{
+                pk: $("#image_id").val(),
+                body: $("#body_id").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(data, response){
+                console.log(data.body)
+                document.location.href = "{% url 'post' image.id %}"
+                alert(data)
+            },
+            error: function (response) {
+                alert("An error occurred");
+            }
+        });
+    });
+</script>
 {% endblock content %}
